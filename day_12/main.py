@@ -17,7 +17,7 @@ def convert_into_list():
 
 # print(convert_into_list());
 
-input = '#...#####.#..##...##...#.##.#.##.###..##.##.#.#..#...###..####.#.....#..##..#.##......#####..####...'
+input = 30 * '.' + '#...#####.#..##...##...#.##.#.##.###..##.##.#.#..#...###..####.#.....#..##..#.##......#####..####...' + 300 * '.'
 global sumx
 sumx = 0
 
@@ -49,7 +49,7 @@ def check_result(result):
     if result in list:
         # sumx += 1
         return True;
-
+print(input)
 for i in range(0, 20):
     input = parse_generation(input)
     print(i, input)
