@@ -113,7 +113,7 @@ const getFuelAmount = mass => parseInt(mass / 3) - 2;
  * Part 2
  */
 
-export const getAnswer = mass => {
+const getAnswer = mass => {
   let subtotal = 0;
   while (getFuelAmount(mass) > 0) {
     mass = getFuelAmount(mass);
@@ -122,3 +122,5 @@ export const getAnswer = mass => {
 
   return subtotal;
 };
+
+module.exports = { getAnswer };

@@ -1,4 +1,4 @@
-import { getAnswer } from "./main";
+const getAnswer = require("./main").getAnswer;
 
 test("calculates the correct amount of fuel needed.", () => {
   expect(getAnswer(1969)).toBe(966);
