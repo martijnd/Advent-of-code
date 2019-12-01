@@ -113,7 +113,7 @@ const getFuelAmount = mass => parseInt(mass / 3) - 2;
  * Part 2
  */
 
-const getAnswer = mass => {
+export const getAnswer = mass => {
   let subtotal = 0;
   while (getFuelAmount(mass) > 0) {
     mass = getFuelAmount(mass);
@@ -122,8 +122,3 @@ const getAnswer = mass => {
 
   return subtotal;
 };
-
-console.log(input.reduce((acc, curr) => acc + getAnswer(curr), 0));
-
-console.assert(getAnswer(1969) === 966);
-console.assert(getAnswer(100756) === 50346);
