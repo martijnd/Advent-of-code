@@ -1003,7 +1003,7 @@ const input = [
  * Part 1
  */
 
-const partOne = (input: string[]): number => {
+export const partOne = (input: string[]): number => {
   let total = 0;
 
   input.map(freqChange => {
@@ -1021,7 +1021,7 @@ const partOne = (input: string[]): number => {
  * Part 2
  */
 
-const partTwo = (input: string[]): number => {
+export const partTwo = (input: string[]): number => {
   let valueArray: number[] = [0];
   let total = 0;
   let finalResult = 99999;

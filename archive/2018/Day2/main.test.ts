@@ -1,6 +1,4 @@
-export {};
-
-const { partOne, partTwo } = require("./main");
+import { partOne, partTwo } from './main';
 
 const testInput = [
   "abcdef",

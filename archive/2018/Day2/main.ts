@@ -1,6 +1,4 @@
-export {};
-
-const input = require("./input");
+import {data} from './input';
 
 function countOccurences(input: string) {
   let hasTwo = false;
@@ -21,7 +19,7 @@ function countOccurences(input: string) {
   return { hasTwo, hasThree };
 }
 
-const partOne = (input: string[]): number => {
+export const partOne = (input: string[]): number => {
   let twoTotal = 0;
   let threeTotal = 0;
   input.map(singleString => {
@@ -38,7 +36,7 @@ const partOne = (input: string[]): number => {
 
 // console.log(partOne(input));
 
-const partTwo = (input: string[]) => {
+export const partTwo = (input: string[]) => {
   const charSize = input[0].split("");
   let scoreArray: {
     checkedString: string;
@@ -110,6 +108,6 @@ const partTwo = (input: string[]) => {
   return finalString;
 };
 
-partTwo(input);
+partTwo(data);
 
 module.exports = { partOne, partTwo };

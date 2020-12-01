@@ -1,5 +1,4 @@
-const partOne = require("./main").partOne;
-const partTwo = require("./main").partTwo;
+import { partOne, partTwo } from './main';
 
 test("correctly calculates the frequency", () => {
   expect(partOne(["+1", "+1", "+1"])).toBe(3);

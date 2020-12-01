@@ -1,4 +1,4 @@
-const input = [
+export const data = [
   "bpacnmelhhzpygfsjoxtvkwuor",
   "biacnmelnizqygfsjoctvkwudr",
   "bpaccmllhizyygfsjoxtvkwudr",
@@ -250,5 +250,3 @@ const input = [
   "bpacpoelhqzqygfsjoxtvkwudr",
   "bpacnlelhizqyzfsjoxtvkwukr"
 ];
-
-module.exports = input;
