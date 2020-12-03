@@ -1,5 +1,7 @@
+import getFile from '../../utils/getFile'
 import { part1, part2 } from './index'
-import input from './input'
+
+const input = getFile(__dirname).map(i => +i)
 
 // part 1
 const exampleData = [

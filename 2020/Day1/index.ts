@@ -1,14 +1,3 @@
-// export function part1(data: number[]) {
-//   for (let i = 0; i < data.length; i++) {
-//     for (let j = 0; j < data.length; j++) {
-//       // console.log(data[i] + data[j]);
-//       if (data[i] + data[j] === 2020) {
-//         return data[i] * data[j];
-//       }
-//     }
-//   }
-// }
-
 export function part1 (data: number[]) {
   let ans
   data.forEach(i => {
