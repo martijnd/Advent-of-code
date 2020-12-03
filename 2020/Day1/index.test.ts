@@ -12,11 +12,12 @@ const exampleData = [
   675,
   1456
 ]
-test('2020 - day 1', () => {
+test('2020 - Day 1: Part 1', () => {
   expect(part1(exampleData)).toEqual(514579)
-  console.log(part1(input))
+  expect(part1(input)).toEqual(972576)
+})
 
-  // Part 2
+test('2020 - Day 1: Part 2', () => {
   expect(part2(exampleData)).toEqual(241861950)
-  console.log(part2(input))
+  expect(part2(input)).toEqual(199300880)
 })

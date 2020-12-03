@@ -27,7 +27,8 @@
     "typescript": "^4.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --verbose --coverage",
+    "test:watch": "jest --verbose --watch"
   },
   "repository": {
     "type": "git",

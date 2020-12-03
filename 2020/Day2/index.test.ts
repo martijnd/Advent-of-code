@@ -10,11 +10,11 @@ const exampleData = [
 ]
 
 test('2020 - Day 2: Part 1', () => {
-  console.log(part1(input))
   expect(part1(exampleData)).toBe(2)
+  expect(part1(input)).toBe(638)
 })
 
 test('2020 - Day 2: Part 2', () => {
-  console.log(part2(input))
   expect(part2(exampleData)).toBe(1)
+  expect(part2(input)).toBe(699)
 })
