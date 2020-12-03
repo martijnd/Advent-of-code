@@ -8,7 +8,7 @@ const exampleData = [
 ]
 
 test('2020 - Day 2: Part 1', () => {
-  console.log(part1(input)) 
+  console.log(part1(input))
   expect(part1(exampleData)).toBe(2)
 })
 
