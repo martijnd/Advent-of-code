@@ -26,10 +26,6 @@ function calc(input: string[], divX: number, divY: number) {
   return trees;
 }
 
-
-
-
-
 export function part2(input: string[]) {
   return calc(input, 1, 1) 
   * calc(input, 3, 1) 
