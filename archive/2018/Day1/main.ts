@@ -1006,7 +1006,7 @@ const input = [
 export const partOne = (input: string[]): number => {
   let total = 0
 
-  input.map(freqChange => {
+  input.forEach(freqChange => {
     const result = getChange(freqChange)
     total += result.modifier === '+' ? result.value : result.value * -1
   })
@@ -1027,7 +1027,7 @@ export const partTwo = (input: string[]): number => {
   let finalResult = 99999
   let found = false
   while (!found) {
-    input.map(freqChange => {
+    input.forEach(freqChange => {
       const result = getChange(freqChange)
       total += result.modifier === '+' ? result.value : result.value * -1
 
