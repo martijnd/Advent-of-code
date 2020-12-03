@@ -1,4 +1,5 @@
-function calc (input: string[], divX: number, divY: number) {
+function calc (input: string[], slope: number[]) {
+  const [divX, divY] = slope
   const XLength = input[0].length
   const YLength = input.length
 
@@ -6,14 +7,13 @@ function calc (input: string[], divX: number, divY: number) {
   let y = 0
   let trees = 0
 
-  function getNextCoord (x: number, y: number) {
-    return [(x + divX) % XLength, y + divY]
-  }
+  const getNextCoord = (x: number, y: number) => [(x + divX) % XLength, y + divY]
 
   while (y < YLength) {
     if (input[y][x] === '#') {
       trees++
     }
+
     [x, y] = getNextCoord(x, y)
   }
 
@@ -21,13 +21,15 @@ function calc (input: string[], divX: number, divY: number) {
 }
 
 export function part1 (input: string[]) {
-  return calc(input, 3, 1)
+  return calc(input, [3, 1])
 }
 
 export function part2 (input: string[]) {
-  return calc(input, 1, 1) *
-    calc(input, 3, 1) *
-    calc(input, 5, 1) *
-    calc(input, 7, 1) *
-    calc(input, 1, 2)
+  return [
+    [1, 1],
+    [3, 1],
+    [5, 1],
+    [7, 1],
+    [1, 2]
+  ].reduce((acc, slope) => acc * calc(input, slope), 1)
 }
