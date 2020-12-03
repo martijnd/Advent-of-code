@@ -1,4 +1,4 @@
-const getFuelAmount = (mass: number) => Math.floor(mass) / 3 - 2;
+const getFuelAmount = (mass: number) => Math.floor(mass) / 3 - 2
 /**
  *   Part 1
  */
@@ -11,11 +11,11 @@ const getFuelAmount = (mass: number) => Math.floor(mass) / 3 - 2;
  */
 
 export const getAnswer = (mass: number) => {
-  let subtotal = 0;
+  let subtotal = 0
   while (getFuelAmount(mass) > 0) {
-    mass = getFuelAmount(mass);
-    subtotal += mass;
+    mass = getFuelAmount(mass)
+    subtotal += mass
   }
 
-  return subtotal;
-};
+  return subtotal
+}

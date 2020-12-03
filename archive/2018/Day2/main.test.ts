@@ -1,29 +1,29 @@
-import { partOne, partTwo } from './main';
+import { partOne, partTwo } from './main'
 
 const testInput = [
-  "abcdef",
-  "bababc",
-  "abbcde",
-  "abcccd",
-  "aabcdd",
-  "abcdee",
-  "ababab"
-];
+  'abcdef',
+  'bababc',
+  'abbcde',
+  'abcccd',
+  'aabcdd',
+  'abcdee',
+  'ababab'
+]
 
 const testInput2 = [
-  "abcde",
-  "fghij",
-  "klmno",
-  "pqrst",
-  "fguij",
-  "axcye",
-  "wvxyz"
-];
+  'abcde',
+  'fghij',
+  'klmno',
+  'pqrst',
+  'fguij',
+  'axcye',
+  'wvxyz'
+]
 
-test("should return the correct checksum", () => {
-  expect(partOne(testInput)).toBe(12);
-});
+test('should return the correct checksum', () => {
+  expect(partOne(testInput)).toBe(12)
+})
 
-test("should return the most matching string with the same characters", () => {
-  expect(partTwo(testInput2)).toBe("fgij");
-});
+test('should return the most matching string with the same characters', () => {
+  expect(partTwo(testInput2)).toBe('fgij')
+})

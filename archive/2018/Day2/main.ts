@@ -1,113 +1,113 @@
-import {data} from './input';
+import { data } from './input'
 
-function countOccurences(input: string) {
-  let hasTwo = false;
-  let hasThree = false;
+function countOccurences (input: string) {
+  let hasTwo = false
+  let hasThree = false
 
-  let chars = "abcdefghijklmnopqrstuvwxyz";
+  const chars = 'abcdefghijklmnopqrstuvwxyz'
 
-  chars.split("").map(char => {
-    const regex = new RegExp(char, "g");
-    const amount = (input.match(regex) || []).length;
+  chars.split('').forEach(char => {
+    const regex = new RegExp(char, 'g')
+    const amount = (input.match(regex) || []).length
     if (amount === 2) {
-      hasTwo = true;
+      hasTwo = true
     } else if (amount === 3) {
-      hasThree = true;
+      hasThree = true
     }
-  });
+  })
 
-  return { hasTwo, hasThree };
+  return { hasTwo, hasThree }
 }
 
 export const partOne = (input: string[]): number => {
-  let twoTotal = 0;
-  let threeTotal = 0;
-  input.map(singleString => {
-    const result = countOccurences(singleString);
+  let twoTotal = 0
+  let threeTotal = 0
+  input.forEach(singleString => {
+    const result = countOccurences(singleString)
     if (result.hasTwo) {
-      twoTotal++;
+      twoTotal++
     }
     if (result.hasThree) {
-      threeTotal++;
+      threeTotal++
     }
-  });
-  return twoTotal * threeTotal;
-};
+  })
+  return twoTotal * threeTotal
+}
 
 // console.log(partOne(input));
 
 export const partTwo = (input: string[]) => {
-  const charSize = input[0].split("");
-  let scoreArray: {
+  const charSize = input[0].split('')
+  const scoreArray: {
     checkedString: string;
     stringScores: {
       currString: string;
       score: number;
     }[];
-  }[] = [];
+  }[] = []
 
   // 1. Loop over each string
-  input.map((singleString, index) => {
-    let singleStringArray: any = [];
+  input.forEach((singleString, index) => {
+    const singleStringArray: any = []
 
     // 2. For each character in string, check with the other string if it matches
-    charSize.map((char, index) => {
+    charSize.forEach((char, index) => {
       // 3. If it matches, add a point to that string in relation to the checked string
-      let score = 0;
-      let thisString = "";
-      let stringScores: {
+      let score = 0
+      let thisString = ''
+      const stringScores: {
         currString: string;
         score: number;
-      }[] = [];
-      input.map(checkingString => {
-        thisString = checkingString;
+      }[] = []
+      input.forEach(checkingString => {
+        thisString = checkingString
         if (singleString !== checkingString) {
           if (char === checkingString[index]) {
-            score++;
+            score++
           }
         }
-        stringScores.push({ currString: checkingString, score });
-      });
-      singleStringArray.stringScores = stringScores;
-      singleStringArray.checkedString = thisString;
-    });
+        stringScores.push({ currString: checkingString, score })
+      })
+      singleStringArray.stringScores = stringScores
+      singleStringArray.checkedString = thisString
+    })
 
-    scoreArray.push(singleStringArray);
-  });
+    scoreArray.push(singleStringArray)
+  })
 
   // 4. At the end, check which string has the most point and which string belongs to it.
-  let result: { points: number; firstString: string; secondString: string } = {
+  const result: { points: number; firstString: string; secondString: string } = {
     points: 0,
-    firstString: "",
-    secondString: ""
-  };
-  scoreArray.map(strings => {
-    strings.stringScores.map(scores => {
+    firstString: '',
+    secondString: ''
+  }
+  scoreArray.forEach(strings => {
+    strings.stringScores.forEach(scores => {
       if (
         scores.score > result.points &&
         strings.checkedString !== scores.currString
       ) {
         // console.log(result.points);
-        result.points = scores.score;
-        result.firstString = strings.checkedString;
-        result.secondString = scores.currString;
+        result.points = scores.score
+        result.firstString = strings.checkedString
+        result.secondString = scores.currString
       }
-    });
-  });
+    })
+  })
 
   // 5. Check which characters match up.
-  let finalString = "";
-  result.firstString.split("").map((char, index) => {
+  let finalString = ''
+  result.firstString.split('').forEach((char, index) => {
     // console.log(char, result.secondString[index]);
     if (char === result.secondString[index]) {
-      finalString = finalString.concat(char);
+      finalString = finalString.concat(char)
     }
-  });
+  })
   //   console.log(finalString);
 
-  return finalString;
-};
+  return finalString
+}
 
-partTwo(data);
+partTwo(data)
 
-module.exports = { partOne, partTwo };
+module.exports = { partOne, partTwo }

@@ -9,32 +9,30 @@
 //   }
 // }
 
-export function part1(data: number[]) {
-  let ans;
-  data.map(i => {
-    data.map(j => {
+export function part1 (data: number[]) {
+  let ans
+  data.forEach(i => {
+    data.forEach(j => {
       if (i + j === 2020) {
-        ans = i * j;
+        ans = i * j
       }
     })
   })
 
-  return ans;
+  return ans
 }
 
-
-
 // Part 2
-export function part2(data: number[]) {
-  let ans;
-  data.map(i => {
-    data.map(j => {
-      data.map(k => {
+export function part2 (data: number[]) {
+  let ans
+  data.forEach(i => {
+    data.forEach(j => {
+      data.forEach(k => {
         if (i + j + k === 2020) {
-          ans = i * j * k;
+          ans = i * j * k
         }
       })
     })
   })
-  return ans;
+  return ans
 }
