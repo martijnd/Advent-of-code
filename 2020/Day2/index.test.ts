@@ -1,7 +1,7 @@
 import getInput from '../../utils/getInput'
 import { part1, part2 } from './index'
 
-const input = getInput(__dirname)
+const input = getInput(__dirname).split('\n')
 
 const exampleData = [
   '1-3 a: abcde',

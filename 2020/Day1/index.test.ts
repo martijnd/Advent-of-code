@@ -1,7 +1,7 @@
 import getInput from '../../utils/getInput'
 import { part1, part2 } from './index'
 
-const input = getInput(__dirname).map(i => +i)
+const input = getInput(__dirname).split('\n').map(i => +i)
 
 // part 1
 const exampleData = [
