@@ -23,5 +23,6 @@ export function part2 (data: number[]) {
       })
     })
   })
+
   return ans
 }
