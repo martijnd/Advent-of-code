@@ -19,10 +19,10 @@ const exampleData = [
 
 test('2020 - Day 3: Part 1', () => {
   expect(part1(exampleData)).toBe(7)
-  expect(part1(input)).toBe(62)
+  expect(part1(input)).toBe(254)
 })
 
 test('2020 - Day 3: Part 2', () => {
   expect(part2(exampleData)).toBe(336)
-  expect(part2(input)).toBe(199186470)
+  expect(part2(input)).toBe(1666768320)
 })
