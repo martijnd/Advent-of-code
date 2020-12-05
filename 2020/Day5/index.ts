@@ -6,6 +6,7 @@ function getColumn (input: string) {
   return calcPosition(0, 7, 'L', 'R', input)
 }
 
+// Imagine realising that it is binary...
 function calcPosition (min: number, max: number, minChar: string, maxChar: string, data: string) {
   return data.split('').reduce((_, pos) => {
     const diff = max - min - 1
@@ -40,14 +41,11 @@ export function part2 (input: string) {
     map[getRow(seatString)][getColumn(seatString)] = 'X'
   })
 
-  const emptyRow = getEmptyRow()
-  const fullRow = Array.from({ length: 8 }, () => 'X')
-
   for (let row = 0; row < 128; row++) {
     if (
-      !map[row].every((val, index) => val === emptyRow[index]) &&
-      map[row - 1].every((val, index) => val === fullRow[index]) &&
-      map[row + 1].every((val, index) => val === fullRow[index])
+      !map[row].every(val => val === 'O') &&
+      map[row - 1].every(val => val === 'X') &&
+      map[row + 1].every(val => val === 'X')
     ) {
       for (let col = 0; col < 8; col++) {
         if (map[row][col] === 'O') {
