@@ -1,5 +1,6 @@
+import { getInput } from '../../utils/getInput'
 import { part1, part2 } from './index'
-import data from './input'
+const input = getInput(__dirname)
 
 const exampleData = `ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
 byr:1937 iyr:2017 cid:147 hgt:183cm
@@ -17,10 +18,10 @@ iyr:2011 ecl:brn hgt:59in`
 
 test('2020 - Day 4: part 1', () => {
   expect(part1(exampleData)).toBe(2)
-  expect(part1(data)).toBe(208)
+  expect(part1(input)).toBe(208)
 })
 
 test('2020 - Day 4: part 2', () => {
   expect(part2(exampleData)).toBe(2)
-  expect(part2(data)).toBe(167)
+  expect(part2(input)).toBe(167)
 })

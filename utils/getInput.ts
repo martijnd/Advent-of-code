@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs'
-import { join } from 'path'
+import { resolve } from 'path'
 
-export default (cwd: string) =>
-  readFileSync(join(cwd, '/input.txt')).toString('utf8')
+export const getInput = (cwd: string) =>
+  readFileSync(resolve(cwd, 'input.txt'), { encoding: 'utf-8' }).trim()
