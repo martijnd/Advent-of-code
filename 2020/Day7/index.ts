@@ -50,11 +50,11 @@ export function part2 (input: string) {
   return getAmount('shiny gold', Object.entries(parseInputWithAmount(input)))
 }
 
-function getAmount (bagName: string, input: [string, unknown][]): number {
-  const bagEntry = input.find(([bag]) => bag === bagName)
+function getAmount (bagName: string, input: [string, string[]][]): number {
+  const bagEntry = input.find(([name]) => name === bagName)
   // If no bags are found, no bags are inside the current bag
   if (!bagEntry) return 0
   const [, childBags] = bagEntry
-  return (childBags as string[])
-    .reduce((acc, bag) => acc + +bag[0] + +bag[0] * getAmount(bag[1], input), 0)
+  return childBags
+    .reduce((acc, [amount, bagName]) => acc + +amount + +amount * getAmount(bagName, input), 0)
 }
