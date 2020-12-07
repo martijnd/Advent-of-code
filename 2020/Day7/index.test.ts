@@ -1,6 +1,8 @@
 import { getInput } from '../../utils/getInput'
 import { part1, part2 } from './index'
 
+const data = getInput(__dirname)
+
 const exampleData = `light red bags contain 1 bright white bag, 2 muted yellow bags.
 dark orange bags contain 3 bright white bags, 4 muted yellow bags.
 bright white bags contain 1 shiny gold bag.
@@ -13,7 +15,7 @@ dotted black bags contain no other bags.`
 
 test('2020 - Day 7: part 1', () => {
   expect(part1(exampleData)).toBe(4)
-  // console.log(part1(getInput(__dirname)))
+  expect(part1(data)).toBe(126)
 })
 
 const exampleData2 = `shiny gold bags contain 2 dark red bags.
@@ -26,4 +28,5 @@ dark violet bags contain no other bags.`
 
 test('2020 - Day 7: part 2', () => {
   expect(part2(exampleData2)).toBe(126)
+  expect(part2(data)).toBe(220149)
 })
