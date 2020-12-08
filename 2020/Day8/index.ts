@@ -57,7 +57,6 @@ export function part2 (input: string) {
       const newData = processAction(newInput.map(line => line.split(' '))[index], acc, index)
       acc = newData[0]
       index = newData[1]
-      // console.log(acc, index >= rows, index, rows, newInput, newData, index, prevIndex, i, count)
       if (index === prevIndex) {
         break
       }
