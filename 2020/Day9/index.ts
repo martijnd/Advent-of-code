@@ -25,29 +25,26 @@ export function part1 (input: string, preambleSize: number) {
 export function part2 (input: string, preambleSize: number) {
   const goldenNumber = part1(input, preambleSize)
 
-  const data = input.split('\n').map(num => +num)
-
-  const validNumbers = data.filter(num => num < goldenNumber)
+  const validNumbers = input.split('\n')
+    .map(num => +num)
+    .filter(num => num < goldenNumber)
 
   return validNumbers.reduce((ans, number, index) => {
     let collection: number[] = [number]
     for (const nestedNumber of validNumbers.slice(index)) {
       const sum = collection.reduce((acc, x) => acc + x, 0)
-      if (number === nestedNumber) {
+      if (sum + nestedNumber > goldenNumber || number === nestedNumber) {
         continue
       }
-      if (sum + nestedNumber > goldenNumber) {
-        continue
+
+      if (sum + nestedNumber < goldenNumber) {
+        collection = [...collection, nestedNumber]
       }
 
       if (sum + nestedNumber === goldenNumber) {
         const total = [...collection, nestedNumber]
 
         return Math.min(...total) + Math.max(...total)
-      }
-
-      if (sum + nestedNumber < goldenNumber) {
-        collection = [...collection, nestedNumber]
       }
     }
 
