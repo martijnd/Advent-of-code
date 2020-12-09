@@ -29,10 +29,9 @@ export function part2 (input: string, preambleSize: number) {
 
   const validNumbers = data.filter(num => num < goldenNumber)
 
-  let count = 0
-  for (const number of validNumbers) {
+  return validNumbers.reduce((ans, number, index) => {
     let collection: number[] = [number]
-    for (const nestedNumber of validNumbers.slice(count)) {
+    for (const nestedNumber of validNumbers.slice(index)) {
       const sum = collection.reduce((acc, x) => acc + x, 0)
       if (number === nestedNumber) {
         continue
@@ -51,6 +50,7 @@ export function part2 (input: string, preambleSize: number) {
         collection = [...collection, nestedNumber]
       }
     }
-    count++
-  }
+
+    return ans
+  }, 0)
 }
