@@ -28,3 +28,8 @@ test('2020 - Day 9: part 1', () => {
   expect(part1(exampleData, 5)).toBe(127)
   expect(part1(data, 25)).toBe(88311122)
 })
+
+test('2020 - Day 9: part 1', () => {
+  expect(part2(exampleData, 5)).toBe(62)
+  expect(part2(data, 25)).toBe(13549369)
+})
