@@ -16,7 +16,7 @@ L.LLLLL.LL`
 
 test('2020 - Day 11: part 1', () => {
   expect(part1(exampleData)).toBe(37)
-  // expect(part1(data)).toBe()
+  // expect(part1(data)).toBe(2448)
 })
 
 // test('2020 - Day 11: part 2', () => {

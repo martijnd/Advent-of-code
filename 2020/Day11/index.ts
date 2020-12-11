@@ -3,9 +3,10 @@ export function part1 (input: string) {
   // console.log(data)
 
   let changes = 999
-  while (changes !== 0) {
+  let count = 0
+  while (changes !== 0 && count < 50) {
     [changes, data] = iterate(data)
-    console.log(data.map(line => line.join('')).join('\n'))
+    count++
   }
 
   return (data.map(line => line.join('')).join('').match(/#/g) || []).length
@@ -14,13 +15,11 @@ export function part1 (input: string) {
 function iterate (original: string[][]): [number, string[][]] {
   const relativeCoords = [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]]
   let changes = 0
-  const result = [...original]
+  let result: string[][] = []
 
-  for (let i = 0; i < result.length; i++) {
-    for (let j = 0; j < result[i].length; j++) {
-      if (original[i][j] === '.') {
-        result[i][j] = '.'
-      }
+  original.forEach((line, i) => {
+    let newLine: string[] = []
+    line.forEach((char, j) => {
       const count = relativeCoords.reduce((acc, [x1, y1]) => {
         if (original[i + y1] !== undefined && original[i + y1][j + x1] !== undefined) {
           if (original[i + y1][j + x1] === '#') {
@@ -30,16 +29,20 @@ function iterate (original: string[][]): [number, string[][]] {
         return acc
       }, 0)
 
-      if (count === 0 && original[i][j] !== '#') {
-        result[i][j] = '#'
+      if (char === '.') {
+        newLine = [...newLine, '.']
+      } else if (count === 0 && char !== '#') {
+        newLine = [...newLine, '#']
         changes++
-      }
-      if (count >= 4 && original[i][j] !== 'L') {
-        result[i][j] = 'L'
+      } else if (count >= 4 && char !== 'L') {
+        newLine = [...newLine, 'L']
         changes++
+      } else {
+        newLine = [...newLine, char]
       }
-    }
-  }
+    })
+    result = [...result, newLine]
+  })
 
   return [changes, result]
 }
