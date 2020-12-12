@@ -11,10 +11,10 @@ F11`
 
 test('2020 - Day 12: part 1', () => {
   expect(part1(exampleData)).toBe(25)
-  expect(part1(data)).toBe(0)
+  expect(part1(data)).toBe(1152)
 })
 
-// test('2020 - Day 12: part 2', () => {
-//   expect(part2(exampleData)).toBe(undefined)
-//   // expect(part2(data)).toBe()
-// })
+test('2020 - Day 12: part 2', () => {
+  expect(part2(exampleData)).toBe(286)
+  expect(part2(data)).toBe(58637)
+})

@@ -11,14 +11,67 @@ export function part1 (input: string) {
       ? getDirection(degrees)
       : action;
     [N, E, degrees] = move(direction, amount, [N, E, degrees])
-    // console.log([N, E, degrees])
   })
 
   return Math.abs(N) + Math.abs(E)
 }
 
 export function part2 (input: string) {
+  const data = input.split('\n')
+  let shipN = 0
+  let shipE = 0
 
+  let wpN = 1
+  let wpE = 10
+  data.forEach(line => {
+    const [action, ...splitAmount] = [...line]
+    const amount = Number(splitAmount.join(''))
+
+    if (action !== 'F') {
+      [wpN, wpE] = getWayPointLocation(action, amount, [wpN, wpE])
+    } else {
+      shipN += wpN * amount
+      shipE += wpE * amount
+    }
+  })
+  return Math.abs(shipN) + Math.abs(shipE)
+}
+
+const getWayPointLocation = (action: string, amount: number, [wpN, wpE]: number[]) => {
+  switch (action) {
+    case 'N':
+      wpN += amount
+      break
+    case 'E':
+      wpE += amount
+      break
+    case 'S':
+      wpN -= amount
+      break
+    case 'W':
+      wpE -= amount
+      break
+    case 'R':
+      [wpN, wpE] = [wpE * -1, wpN]
+      if (amount >= 180) {
+        [wpN, wpE] = [wpE * -1, wpN]
+      }
+      if (amount === 270) {
+        [wpN, wpE] = [wpE * -1, wpN]
+      }
+      break
+    case 'L':
+      [wpE, wpN] = [wpN * -1, wpE]
+      if (amount >= 180) {
+        [wpE, wpN] = [wpN * -1, wpE]
+      }
+      if (amount === 270) {
+        [wpE, wpN] = [wpN * -1, wpE]
+      }
+      break
+  }
+
+  return [wpN, wpE]
 }
 
 const move = (direction: string, amount: number, currentPos: number[]) => {
@@ -52,8 +105,7 @@ const getDirection = (degrees: number) => {
     0: 'N',
     90: 'E',
     180: 'S',
-    270: 'W',
-    360: 'N'
+    270: 'W'
   }
 
   return table[(degrees % 360 + (degrees < 0 ? 360 : 0)) % 360]
