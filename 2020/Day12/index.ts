@@ -4,8 +4,7 @@ export function part1 (input: string) {
   let N = 0
   let E = 0
   data.forEach(line => {
-    const [action, ...splitAmount] = [...line]
-    const amount = Number(splitAmount.join(''))
+    const [action, amount] = getData(line)
 
     const direction = action === 'F'
       ? getDirection(degrees)
@@ -24,8 +23,7 @@ export function part2 (input: string) {
   let wpN = 1
   let wpE = 10
   data.forEach(line => {
-    const [action, ...splitAmount] = [...line]
-    const amount = Number(splitAmount.join(''))
+    const [action, amount] = getData(line)
 
     if (action !== 'F') {
       [wpN, wpE] = getWayPointLocation(action, amount, [wpN, wpE])
@@ -35,6 +33,13 @@ export function part2 (input: string) {
     }
   })
   return Math.abs(shipN) + Math.abs(shipE)
+}
+
+const getData = (line: string): [string, number] => {
+  const [action, ...splitAmount] = [...line]
+  const amount = Number(splitAmount.join(''))
+
+  return [action, amount]
 }
 
 const getWayPointLocation = (action: string, amount: number, [wpN, wpE]: number[]) => {
@@ -52,26 +57,23 @@ const getWayPointLocation = (action: string, amount: number, [wpN, wpE]: number[
       wpE -= amount
       break
     case 'R':
-      [wpN, wpE] = [wpE * -1, wpN]
-      if (amount >= 180) {
-        [wpN, wpE] = [wpE * -1, wpN]
-      }
-      if (amount === 270) {
-        [wpN, wpE] = [wpE * -1, wpN]
-      }
+      [wpN, wpE] = getCoords(wpN, wpE, amount)
       break
     case 'L':
-      [wpE, wpN] = [wpN * -1, wpE]
-      if (amount >= 180) {
-        [wpE, wpN] = [wpN * -1, wpE]
-      }
-      if (amount === 270) {
-        [wpE, wpN] = [wpN * -1, wpE]
-      }
+      [wpE, wpN] = getCoords(wpE, wpN, amount)
       break
   }
 
   return [wpN, wpE]
+}
+
+const getCoords = (x: number, y: number, amount: number) => {
+  const count = amount / 90
+  for (let i = 0; i < count; i++) {
+    [x, y] = [y * -1, x]
+  }
+
+  return [x, y]
 }
 
 const move = (direction: string, amount: number, currentPos: number[]) => {
