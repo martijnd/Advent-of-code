@@ -70,7 +70,7 @@ const getWayPointLocation = (action: string, amount: number, [wpN, wpE]: number[
 const getCoords = (x: number, y: number, amount: number) => {
   const count = amount / 90
   for (let i = 0; i < count; i++) {
-    [x, y] = [y * -1, x]
+    [x, y] = [-y, x]
   }
 
   return [x, y]
