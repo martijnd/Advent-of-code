@@ -1,16 +1,14 @@
 {
   "name": "advent-of-code",
   "version": "1.0.0",
-  "description": "",
+  "description": "The yearly Advent of Code puzzles.",
   "main": "index.js",
   "type": "module",
-  "dependencies": {
-    "@types/node": "^14.0"
-  },
   "devDependencies": {
     "@babel/core": "7.7.4",
     "@babel/preset-env": "^7.12.7",
     "@types/jest": "^26.0",
+    "@types/node": "^14.0",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
@@ -36,8 +34,8 @@
     "type": "git",
     "url": "git+https://github.com/martijnd/Advent-of-code.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["advent-of-code"],
+  "author": "Martijn Dorsman",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/martijnd/Advent-of-code/issues"
