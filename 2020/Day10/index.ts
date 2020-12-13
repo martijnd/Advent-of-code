@@ -1,5 +1,3 @@
-import { rootCertificates } from 'tls'
-
 export function part1 (input: string) {
   const data = input.split('\n').map(Number).sort((a, b) => a - b)
 
