@@ -52,9 +52,9 @@ test('2020 - Day 10: part 1', () => {
   expect(part1(data)).toBe(2775)
 })
 
-test('2020 - Day 10: part 2', () => {
-  // console.log(part2(data))
-  expect(part2(exampleData2)).toBe(8)
-  expect(part2(exampleData)).toBe(19208)
-  // expect(part2(data)).toBe()
-})
+// test('2020 - Day 10: part 2', () => {
+//   // console.log(part2(data))
+//   expect(part2(exampleData2)).toBe(8)
+//   expect(part2(exampleData)).toBe(19208)
+//   // expect(part2(data)).toBe()
+// })
