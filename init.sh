@@ -34,12 +34,12 @@ const exampleData = \`\`
 
 test('2020 - Day $1: part 1', () => {
   expect(part1(exampleData)).toBe(undefined)
-  // expect(part1(data)).toBe()
+  // expect(part1(data)).toBe(undefined)
 })
 
 // test('2020 - Day $1: part 2', () => {
 //   expect(part2(exampleData)).toBe(undefined)
-//   // expect(part2(data)).toBe()
+//   // expect(part2(data)).toBe(undefined)
 // })" > index.test.ts
 
   echo "files created: "
