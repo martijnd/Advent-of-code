@@ -21,13 +21,16 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "jest": "^26.0",
+    "live-server": "^1.2.1",
     "ts-jest": "^26.0",
     "ts-node": "^9.0.0",
     "typescript": "^4.0"
   },
   "scripts": {
     "test": "jest --verbose --coverage",
-    "test:watch": "jest --verbose --watch"
+    "test:watch": "jest --verbose --watch",
+    "coverage": "live-server coverage/lcov-report",
+    "test:coverage": "npm test && npm run coverage"
   },
   "repository": {
     "type": "git",
