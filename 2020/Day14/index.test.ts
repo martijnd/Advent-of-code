@@ -14,6 +14,6 @@ test('2020 - Day 14: part 1', () => {
 })
 
 // test('2020 - Day 14: part 2', () => {
-//   expect(part2(exampleData)).toBe(undefined)
+//   expect(part2(exampleData)).toBe(206)
 //   // expect(part2(data)).toBe(undefined)
 // })
