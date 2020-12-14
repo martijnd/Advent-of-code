@@ -34,7 +34,9 @@
     "type": "git",
     "url": "git+https://github.com/martijnd/Advent-of-code.git"
   },
-  "keywords": ["advent-of-code"],
+  "keywords": [
+    "advent-of-code"
+  ],
   "author": "Martijn Dorsman",
   "license": "ISC",
   "bugs": {
