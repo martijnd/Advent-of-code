@@ -1,20 +1,22 @@
 export function part1 (input: string) {
-  const data = input.split('\n')
-  console.log(data)
-
   let mask = ''
-  let dataa: {[key: string]:  } = {}
 
-  data.forEach(line => {
+  return Object.values(input.split('\n').reduce((result, line) => {
     if (line.startsWith('mask')) {
       mask = line.split(' = ')[1]
-    }
-    if (line.startsWith('mem')) {
+      return result
+    } else {
       const [, address, amount] = line.match(/\[(\d+)\]\s=\s(\d+)/) as string[]
-      console.log(amount)
-      data[address] = 
+      return {
+        ...result,
+        [address]: (+amount >>> 0)
+          .toString(2)
+          .padStart(36, '0').split('').reduce((acc, char, index) =>
+            acc + (mask[index] === 'X' ? char : mask[index]), '')
+      }
     }
-  })
+  }, {} as {[key: string]: string}))
+    .reduce((acc, num) => acc + parseInt(num, 2), 0)
 }
 
 export function part2 (input: string) {

@@ -10,7 +10,7 @@ mem[8] = 0`
 
 test('2020 - Day 14: part 1', () => {
   expect(part1(exampleData)).toBe(165)
-  // expect(part1(data)).toBe(undefined)
+  expect(part1(data)).toBe(17481577045893)
 })
 
 // test('2020 - Day 14: part 2', () => {
