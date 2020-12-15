@@ -1,20 +1,24 @@
 export function part1 (input: string) {
-  let start = input.split(',').map(Number)
+  return calculate(input, 2020)
+}
 
-  for (let i = start.length; i <= 2020; i++) {
-    const one = i - 1
-    const last = start[i - 1]
-    const two = start.slice(0, -1).length - (start.slice(0, -1).reverse().findIndex(num => num === last)) - 1
+function calculate (input: string, position: number) {
+  const data = input.split(',').map(Number)
 
-    if (!start.slice(0, -1).includes(last)) {
-      start = [...start, 0]
-    } else {
-      start = [...start, one - two]
-    }
+  const indexMap = new Map<number, number>(
+    data.map((value, index) => [value, index])
+  )
+  let lastValue = data[data.length - 1]
+  for (let i = data.length; i < position; ++i) {
+    const lastIndex = i - 1
+    const nextValue = lastIndex - (indexMap.get(lastValue) ?? lastIndex)
+    indexMap.set(lastValue, lastIndex)
+    lastValue = nextValue
   }
-  return start[start.length - 2]
+
+  return lastValue
 }
 
 export function part2 (input: string) {
-
+  return calculate(input, 30000000)
 }
