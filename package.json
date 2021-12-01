@@ -25,7 +25,7 @@
     "typescript": "^4.0"
   },
   "scripts": {
-    "test": "jest --verbose --coverage",
+    "test": "jest",
     "test:watch": "jest --verbose --watch",
     "coverage": "live-server coverage/lcov-report",
     "test:coverage": "npm test && npm run coverage"
