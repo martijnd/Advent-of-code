@@ -6,11 +6,15 @@ then
   exit 1
 fi
 
-if [ -d "./2020/Day$1" ] 
+if [ -f .env ]; then
+    export $(cat .env | awk '/=/ {print $1}')
+fi
+
+if [ -d "./2021/Day$1" ] 
 then
     echo "Directory 'Day$1' already exists!" 
 else
-  cd 2020
+  cd 2021
   mkdir "Day$1"
   cd "Day$1"
   touch index.ts
@@ -32,12 +36,12 @@ const data = getInput(__dirname)
 
 const exampleData = \`\`
 
-test('2020 - Day $1: part 1', () => {
+test('2021 - Day $1: part 1', () => {
   expect(part1(exampleData)).toBe(undefined)
   // expect(part1(data)).toBe(undefined)
 })
 
-// test('2020 - Day $1: part 2', () => {
+// test('2021 - Day $1: part 2', () => {
 //   expect(part2(exampleData)).toBe(undefined)
 //   // expect(part2(data)).toBe(undefined)
 // })" > index.test.ts
@@ -46,4 +50,8 @@ test('2020 - Day $1: part 1', () => {
   echo "- Day$1/input.txt"
   echo "- Day$1/index.ts"
   echo "- Day$1/index.test.ts"
+
+  echo "Fetching data..."
+  curl -s -H "cookie: session=$SESSION_ID" https://adventofcode.com/2021/day/$1/input > ./input.txt
+  echo "Done!"
 fi
