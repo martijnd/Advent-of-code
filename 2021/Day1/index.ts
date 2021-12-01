@@ -1,12 +1,5 @@
 export function part1(input: string): number {
-  let count = 0;
-  // input.split("\n").forEach((num, index, data) => {
-  //   if (index > 0) {
-  //     if (parseInt(num) > parseInt(data[index - 1])) {
-  //       count++;
-  //     }
-  //   }
-  // });
+  let count = 0
 
   input.split("\n").map(Number).reduce((prev, curr) => {
     if (curr > prev) {
