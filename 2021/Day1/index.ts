@@ -1,8 +1,8 @@
 export function part1(input: string): number {
   let count = 0;
-  input.split("\n").forEach((num, index, data) => {
+  input.split("\n").map(Number).forEach((num, index, data) => {
     if (index > 0) {
-      if (parseInt(num) > parseInt(data[index - 1])) {
+      if (num > data[index - 1]) {
         count++;
       }
     }
