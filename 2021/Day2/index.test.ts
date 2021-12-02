@@ -12,10 +12,10 @@ forward 2`
 
 test('2021 - Day 2: part 1', () => {
   expect(part1(exampleData)).toBe(150)
-  expect(part1(data)).toBe(undefined)
+  expect(part1(data)).toBe(2027977)
 })
 
-// test('2021 - Day 2: part 2', () => {
-//   expect(part2(exampleData)).toBe(undefined)
-//   // expect(part2(data)).toBe(undefined)
-// })
+test('2021 - Day 2: part 2', () => {
+  expect(part2(exampleData)).toBe(900)
+  expect(part2(data)).toBe(1903644897)
+})
