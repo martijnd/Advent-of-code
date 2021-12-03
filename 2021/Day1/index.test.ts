@@ -22,4 +22,3 @@ test('2021 - Day 1: part 2', () => {
   expect(part2(sample)).toBe(5)
   expect(part2(data)).toBe(1344)
 })
-
