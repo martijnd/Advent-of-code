@@ -25,10 +25,12 @@ export function part1(input: string) {
 }
 
 export function part2(input: string) {
-  let numbers = input.split('\n')
-  let oxygen = ''
-  let scrubber = ''
+  return (
+    calculate(input.split('\n'), true) * calculate(input.split('\n'), false)
+  )
+}
 
+function calculate(numbers: string[], yes: boolean): number {
   for (let i = 0; i < numbers[0].length; i++) {
     let total1 = 0
     let total0 = 0
@@ -41,32 +43,15 @@ export function part2(input: string) {
     })
 
     numbers = numbers.filter((number) => {
-      return total1 >= total0 ? number[i] === '1' : number[i] === '0'
-    })
-
-    if (numbers.length === 1) break;
-  }
-  oxygen = numbers[0]
-  
-  numbers = input.split('\n')
-  for (let i = 0; i < numbers[0].length; i++) {
-    let total1 = 0
-    let total0 = 0
-    numbers.forEach((number) => {
-      if (number[i] === '1') {
-        total1++
-      } else {
-        total0++
+      if (yes) {
+        return total1 >= total0 ? number[i] === '1' : number[i] === '0'
       }
-    })
-    
-    numbers = numbers.filter((number) => {
+
       return total1 >= total0 ? number[i] === '0' : number[i] === '1'
     })
-    
-    if (numbers.length === 1) break;
-  }
-  scrubber = numbers[0]
 
-  return parseInt(oxygen, 2) * parseInt(scrubber, 2)
+    if (numbers.length === 1) return parseInt(numbers[0], 2)
+  }
+
+  return 0
 }
