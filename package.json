@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "The yearly Advent of Code puzzles.",
   "main": "index.js",
-  "type": "module",
   "devDependencies": {
     "@babel/core": "7.7.4",
     "@babel/preset-env": "^7.12.7",
