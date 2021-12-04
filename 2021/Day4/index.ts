@@ -4,12 +4,10 @@ export function part1(input: string) {
 
   let boards = getBoards(data).map(splitRows);
 
-  for (let i = 0; i < numbersDrawn.length; i++) {
-    const numberDrawn = numbersDrawn[i];
+  for (let numberDrawn of numbersDrawn) {
     boards = boards.map((board) => checkBoardForNumber(board, numberDrawn));
 
-    for (let i = 0; i < boards.length; i++) {
-      const board = boards[i];
+    for (let board of boards) {
       if (checkRowsForWin(board) || checkColsForWin(board)) {
         return calculateSum(board, numberDrawn);
       }
@@ -19,10 +17,10 @@ export function part1(input: string) {
 
 function calculateSum(board: number[][], number: number) {
   let sum = 0;
-  for (let rowIndex = 0; rowIndex < 5; rowIndex++) {
-    for (let colIndex = 0; colIndex < 5; colIndex++) {
-      if (board[rowIndex][colIndex] !== 100) {
-        sum += board[rowIndex][colIndex];
+  for (let row of board) {
+    for (let col of row) {
+      if (col !== 100) {
+        sum += col;
       }
     }
   }
@@ -61,8 +59,7 @@ function splitRows(board: string[]) {
       row.slice(9, 11),
       row.slice(12, 14),
     ]
-      .map((num) => num.trim())
-      .map(Number)
+      .map((num) => Number(num.trim()))
   );
 }
 
@@ -84,10 +81,10 @@ function checkRowsForWin(board: number[][]) {
 
 function checkColsForWin(board: number[][]) {
   let match = false;
-  for (let rowIndex = 0; rowIndex < 5; rowIndex++) {
+  for (let row of board) {
     match = true;
-    for (let colIndex = 0; colIndex < 5; colIndex++) {
-      if (board[rowIndex][colIndex] !== 100) {
+    for (let col of row) {
+      if (col !== 100) {
         match = false;
       }
     }
@@ -108,12 +105,10 @@ export function part2(input: string) {
   let boardsThatWon = [];
   let winningNumbers = [];
 
-  for (let i = 0; i < numbersDrawn.length; i++) {
-    const numberDrawn = numbersDrawn[i];
+  for (let numberDrawn of numbersDrawn) {
     boards = boards.map((board) => checkBoardForNumber(board, numberDrawn));
 
-    for (let i = 0; i < boards.length; i++) {
-      const board = boards[i];
+    for (let board of boards) {
       if (checkRowsForWin(board) || checkColsForWin(board)) {
         boardsThatWon.push(board);
         winningNumbers.push(numberDrawn);
@@ -123,7 +118,11 @@ export function part2(input: string) {
   }
 
   return calculateSum(
-    boardsThatWon[boardsThatWon.length - 1],
-    winningNumbers[winningNumbers.length - 1]
+    last(boardsThatWon),
+    last(winningNumbers)
   );
+}
+
+function last<T>(array: T[]): T {
+  return array[array.length - 1];
 }
