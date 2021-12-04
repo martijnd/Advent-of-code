@@ -100,4 +100,30 @@ function checkColsForWin(board: number[][]) {
   return false;
 }
 
-export function part2(input: string) {}
+export function part2(input: string) {
+  const data = input.split('\n');
+  const numbersDrawn = data[0].split(',').map(Number);
+
+  let boards = getBoards(data).map(splitRows);
+  let boardsThatWon = [];
+  let winningNumbers = [];
+
+  for (let i = 0; i < numbersDrawn.length; i++) {
+    const numberDrawn = numbersDrawn[i];
+    boards = boards.map((board) => checkBoardForNumber(board, numberDrawn));
+
+    for (let i = 0; i < boards.length; i++) {
+      const board = boards[i];
+      if (checkRowsForWin(board) || checkColsForWin(board)) {
+        boardsThatWon.push(board);
+        winningNumbers.push(numberDrawn);
+        boards = boards.filter(cBoard => cBoard[0] !== board[0]);
+      }
+    }
+  }
+
+  return calculateSum(
+    boardsThatWon[boardsThatWon.length - 1],
+    winningNumbers[winningNumbers.length - 1]
+  );
+}

@@ -28,7 +28,7 @@ test('2021 - Day 4: part 1', () => {
   expect(part1(data)).toBe(28082)
 })
 
-// test('2021 - Day 4: part 2', () => {
-//   expect(part2(exampleData)).toBe(undefined)
-//   // expect(part2(data)).toBe(undefined)
-// })
+test('2021 - Day 4: part 2', () => {
+  expect(part2(exampleData)).toBe(1924)
+  expect(part2(data)).toBe(8224)
+})
