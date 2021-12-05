@@ -110,12 +110,13 @@ export function part2(input: string) {
   const board = Array.from(Array(yMax + 1), () => new Array(xMax + 1).fill(0));
 
   for (let coord of coords) {
-    console.log(coord)
-    const allCoords= getAllCoords(coord);
+    console.log(coord);
+    const allCoords = getAllCoords(coord);
     console.log(allCoords);
     allCoords.forEach(([x, y]) => {
-      board[y][x] += 1
+      board[y][x] += 1;
     });
+
     // if (coord.start[0] === coord.end[0]) {
     //   // [5, 1], [5, 6]
     //   if (coord.start[1] < coord.end[1]) {
@@ -128,8 +129,7 @@ export function part2(input: string) {
     //       board[i][coord.start[0]] += 1;
     //     }
     //   }
-    // }
-    // if (coord.start[1] === coord.end[1]) {
+    // } else if (coord.start[1] === coord.end[1]) {
     //   // [0, 5], [6, 5]
     //   if (coord.start[0] < coord.end[0]) {
     //     for (let i = coord.start[0]; i <= coord.end[0]; i++) {
@@ -141,47 +141,53 @@ export function part2(input: string) {
     //       board[coord.end[1]][i] += 1;
     //     }
     //   }
-    // }
-
-    // if (
-    //   coord.start[0] === coord.end[1] && coord.start[1] === coord.end[0]
+    // } else if (
+    //   coord.start[0] === coord.end[1] &&
+    //   coord.start[1] === coord.end[0]
     // ) {
-    //   const start = Object.values(coord).sort((a, b) => a[0] - b[0])
-    //   console.log(start)
+    //   const start = Object.values(coord).sort((a, b) => a[0] - b[0]);
+    //   console.log(start);
     //   for (let i = start[0][0]; i <= start[1][0]; i++) {
     //     // console.log([i, coord.start[0] - i])
     //     board[coord.start[0] - i][i] += 1;
     //   }
-    // }
-
-    // if (coord.start[0] - coord.start[1] === coord.end[0] - coord.end[1]
-    //   && !(coord.start[0] === coord.start[1] && coord.end[0] === coord.end[1])) {
-    //     const start = Object.values(coord).sort((a, b) => a[0] - b[0]);
-    //     for (let i = 0; i <= start[1][1]; i++) {
-    //       board[start[0][1] + i][start[0][0] + i] += 1;
-    //     }
-    // }
-
-    // if (Math.abs(coord.start[0] - coord.end[0]) === Math.abs(coord.start[1] - coord.end[1])
-    // && !(coord.start[0] === coord.start[1] && coord.end[1] === coord.end[0])
-    // && !(coord.start[0] === coord.end[1] && coord.start[1] === coord.end[0])) {
-    //   for (let i = coord.end[0]; i >= coord.start[1]; i--) {
-    //     // i = 0, y = 2
-    //     // i = 5, y = 5
-    //     console.log([i, ])
-    //     board[i][i - coord.start[1] + coord.end[1]] += 1;
+    // } else if (
+    //   coord.start[0] - coord.start[1] === coord.end[0] - coord.end[1] &&
+    //   !(coord.start[0] === coord.start[1] && coord.end[0] === coord.end[1])
+    // ) {
+    //   const start = Object.values(coord).sort((a, b) => a[0] - b[0]);
+    //   for (let i = 0; i <= start[1][1]; i++) {
+    //     board[start[0][1] + i][start[0][0] + i] += 1;
     //   }
-    // }
-    
-    // if (coord.start[0] === coord.start[1] && coord.end[0] === coord.end[1]) {
+    // } else if (
+    //   coord.start[0] === coord.start[1] &&
+    //   coord.end[0] === coord.end[1]
+    // ) {
     //   // console.log(coord)
     //   for (let i = coord.start[0]; i <= coord.end[0]; i++) {
     //     board[i][i] += 1;
     //   }
-    // }
-    console.log(board.map(row => row.join('')).join("\n").replace(/0/g, '.'));
-  }
+    // } else if (
+    //   Math.abs(coord.start[0] - coord.end[0]) ===
+    //     Math.abs(coord.start[1] - coord.end[1]) &&
+    //   !(coord.start[0] === coord.start[1] && coord.end[1] === coord.end[0]) &&
+    //   !(coord.start[0] === coord.end[1] && coord.start[1] === coord.end[0])
+    // ) {
+    //   // for (let i = coord.end[0]; i >= coord.start[1]; i--) {
+    //   //   console.log(i, coord, i + coord.end[0] + coord.end[1] - coord.end[1] * i)
+    //   //   board[i + coord.end[0] + coord.end[1] - coord.end[1] * i][i] += 1;
+    //   // }
 
+    //   console.log(getAllCoords(coord));
+    // }
+
+    console.log(
+      board
+        .map((row) => row.join(''))
+        .join('\n')
+        .replace(/0/g, '.')
+    );
+  }
 
   let finalMax = 0;
 
@@ -196,28 +202,41 @@ export function part2(input: string) {
   return finalMax;
 }
 
-
-function getAllCoords({start, end}: {start: number[], end: number[]}) {
-  function slope(a: number[], b: number[]) {
-    return (b[1] - a[1]) / (b[0] - a[0]);
+function slope(a: number[], b: number[]) {
+  if (a[0] === b[0]) {
+    return 1;
   }
-  
-  function intercept(point: number[], slope: number) {
+
+  return (b[1] - a[1]) / (b[0] - a[0]);
+}
+
+function getAllCoords({ start, end }: { start: number[]; end: number[] }) {
+  function intercept(point: number[], slope: number | null) {
     if (slope === null) {
-        // vertical line
-        return point[0];
+      // vertical line
+      return point[0];
     }
-  
+
     return point[1] - slope * point[0];
   }
-  
+
   const m = slope(start, end);
   const b = intercept(start, m);
-  
+
   let coordinates = [];
-  for (let x = start[0]; x <= end[0]; x++) {
-    let y = x + b;
-    coordinates.push([x, y]);
+  if (start[0] < end[0]) {
+    // console.log('here', start, end)
+    for (let x = start[0]; x <= end[0]; x++) {
+      let y = m * x + b;
+      // console.log(x, b, y);
+      coordinates.push([x, y]);
+    }
+  } else {
+    for (let x = end[0]; x <= start[0]; x++) {
+      let y = m * x + b;
+      // console.log(x, b, y);
+      coordinates.push([x, y]);
+    }
   }
 
   return coordinates;
