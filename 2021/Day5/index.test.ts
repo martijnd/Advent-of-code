@@ -14,12 +14,12 @@ const exampleData = `0,9 -> 5,9
 0,0 -> 8,8
 5,5 -> 8,2`
 
-test('2021 - Day 5: part 1', () => {
-  expect(part1(exampleData)).toBe(5)
-  expect(part1(data)).toBe(6841)
-})
-
-// test('2021 - Day 5: part 2', () => {
-//   expect(part2(exampleData)).toBe(undefined)
-//   // expect(part2(data)).toBe(undefined)
+// test('2021 - Day 5: part 1', () => {
+//   expect(part1(exampleData)).toBe(5)
+//   expect(part1(data)).toBe(6841)
 // })
+
+test('2021 - Day 5: part 2', () => {
+  expect(part2(exampleData)).toBe(12)
+  // expect(part2(data)).toBe(undefined)
+})
