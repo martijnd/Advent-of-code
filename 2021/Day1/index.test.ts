@@ -14,7 +14,7 @@ const sample = `199
 263`
 
 test('2021 - Day 1: part 1', () => {
-  // expect(part1(sample)).toBe(7)
+  expect(part1(sample)).toBe(7)
   expect(part1(data)).toBe(1316)
 })
 
