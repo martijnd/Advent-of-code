@@ -1,20 +1,15 @@
 export function part1(input: string) {
-  const fish = input.split(',').map(Number);
-
-  return calculate(fish, 80);
+  return calculate(input.split(',').map(Number), 80);
 }
 
 export function part2(input: string) {
-  const fish = input.split(',').map(Number);
-
-  return calculate(fish, 256);
+  return calculate(input.split(',').map(Number), 256);
 }
 
 function shift(fish: Record<number, number>) {
-  const dupe = Object.assign({}, fish);
   return Object.entries(fish).reduce((acc, [idx, _]) => {
     const cIndex = parseInt(idx);
-    const cValue = dupe[+idx];
+    const cValue = Object.assign({}, fish)[+idx];
 
     return cIndex === 0
       ? {
@@ -32,13 +27,13 @@ function shift(fish: Record<number, number>) {
 }
 
 function calculate(fish: number[], days: number) {
-  const startObj = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0 };
+  const startObj = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0 }  as Record<number, number>;
   let cumulatives = fish.reduce(
     (acc, curr) => ({
       ...acc,
       [curr]: acc[curr] ? acc[curr] + 1 : 1,
     }),
-    startObj as Record<number, number>
+    startObj
   );
 
   for (let _ = 0; _ < days; _++) {
