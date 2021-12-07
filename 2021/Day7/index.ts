@@ -1,42 +1,22 @@
-export function part1 (input: string) {
-  const crabSubmarines = input.split(',').map(Number);
-  
-  let min = Infinity;
-
-  crabSubmarines.forEach((number, idx) => {
-    const crabSubmarinesFiltered = crabSubmarines.filter((_, idx2) => idx2 !== idx);
-    const sum = crabSubmarinesFiltered.reduce((acc, curr) => acc + Math.abs(number - curr), 0)
-    if (sum < min) {
-      min = sum;
-    } 
-
-  }, Infinity)
-  
-  return min;
+export function part1(input: string) {
+  return calculate(input);
 }
 
-export function part2 (input: string) {
-  const crabSubmarines = input.split(',').map(Number);
-  
-  let min = Infinity;
-  
-  for (let i = 0; i < Math.max(...crabSubmarines); i++) {
-    const sum = crabSubmarines.reduce((acc, curr) => acc + sum2(Math.abs(i - curr)), 0);
-
-    if (sum < min) {
-      min = sum;
-    }  
-  
-  }  
-  
-  return min;
+export function part2(input: string) {
+  return calculate(input, (num: number) =>
+    [...Array(num)].reduce((a, _, i) => a + i + 1, 0)
+  );
 }
 
-function sum2 (num: number) {
-    let sum = 0;
-    for (let i = 1; i <= num; i++) {
-      sum += i;
-    }
+function calculate(input: string, cb: (num: number) => number = (x) => x) {
+  const crabSubmarines = input.split(',').map(Number);
 
-    return sum;
+  return [...Array(Math.max(...crabSubmarines))].reduce((acc, __, i) => {
+    const sum = crabSubmarines.reduce(
+      (acc, curr) => acc + cb(Math.abs(i - curr)),
+      0
+    );
+
+    return sum < acc ? sum : acc;
+  }, Infinity);
 }
