@@ -10,7 +10,7 @@ test('2021 - Day 7: part 1', () => {
   expect(part1(data)).toBe(347449)
 })
 
-// test('2021 - Day 7: part 2', () => {
-//   expect(part2(exampleData)).toBe(undefined)
-//   // expect(part2(data)).toBe(undefined)
-// })
+test('2021 - Day 7: part 2', () => {
+  expect(part2(exampleData)).toBe(168)
+  expect(part2(data)).toBe(98039527)
+})
