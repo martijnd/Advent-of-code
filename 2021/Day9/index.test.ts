@@ -10,8 +10,8 @@ const exampleData = `2199943210
 9899965678`
 
 test('2021 - Day 9: part 1', () => {
-  expect(part1(exampleData)).toBe(undefined)
-  // expect(part1(data)).toBe(undefined)
+  expect(part1(exampleData)).toBe(15)
+  expect(part1(data)).toBe(452)
 })
 
 // test('2021 - Day 9: part 2', () => {

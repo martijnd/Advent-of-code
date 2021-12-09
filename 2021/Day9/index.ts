@@ -1,6 +1,5 @@
 export function part1(input: string) {
   const locations = input.split('\n').map((num) => num.split('').map(Number));
-  console.log(locations);
 
   const rowCount = locations.length;
   const colCount = locations[0].length;
@@ -8,7 +7,8 @@ export function part1(input: string) {
 
   for (let row = 0; row < rowCount; row++) {
     for (let col = 0; col < colCount; col++) {
-      let match = false;
+      let match = true;
+
       const curr = locations[row][col];
       const locs = {
         top: locations?.[row - 1]?.[col],
@@ -17,12 +17,13 @@ export function part1(input: string) {
         right: locations?.[row]?.[col + 1],
       };
 
-      for (let loc in Object.values(locs)) {
-        if (loc && +loc > curr) {
-          match = true;
+      const values = Object.values(locs);
+      for (let loc of values) {
+        if (loc !== undefined && +loc <= curr) {
+          match = false;
         }
       }
-
+      
       if (match) {
         total += 1 + curr;
       }
