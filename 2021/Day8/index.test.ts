@@ -14,12 +14,12 @@ bdfegc cbegaf gecbf dfcage bdacg ed bedf ced adcbefg gebcd | ed bcgafe cdgba cbg
 egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
 gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce`
 
-// test('2021 - Day 8: part 1', () => {
-//   expect(part1(exampleData)).toBe(26)
-//   expect(part1(data)).toBe(390)
-// })
-
-test('2021 - Day 8: part 2', () => {
-  expect(part2(exampleData)).toBe(61229)
-  // expect(part2(data)).toBe(undefined)
+test('2021 - Day 8: part 1', () => {
+  expect(part1(exampleData)).toBe(26)
+  expect(part1(data)).toBe(390)
 })
+
+// test('2021 - Day 8: part 2', () => {
+//   expect(part2(exampleData)).toBe(61229)
+//   // expect(part2(data)).toBe(undefined)
+// })
