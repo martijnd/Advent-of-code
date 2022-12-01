@@ -17,15 +17,14 @@
     "eslint-plugin-jest": "^24.1.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "jest": "^26.0",
     "live-server": "^1.2.1",
-    "ts-jest": "^26.0",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0"
+    "typescript": "^4.0",
+    "vitest": "^0.25.3"
   },
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --verbose --watch",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
     "coverage": "live-server coverage/lcov-report",
     "test:coverage": "npm test && npm run coverage"
   },

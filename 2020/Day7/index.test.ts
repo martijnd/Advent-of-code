@@ -1,6 +1,8 @@
 import { getInput } from '../../utils/getInput'
 import { part1, part2 } from './index'
 
+import { test, expect } from 'vitest';
+
 const data = getInput(__dirname)
 
 const exampleData = `light red bags contain 1 bright white bag, 2 muted yellow bags.
