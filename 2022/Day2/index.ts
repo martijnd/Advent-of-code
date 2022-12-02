@@ -1,13 +1,16 @@
+type TheirDraw = 'A' | 'B' | 'C';
+type OurDraw = 'X' | 'Y' | 'Z';
+
 export function part1(input: string) {
-  const rounds = input.split('\n').map((x) => x.split(' ')) as [
-    'A' | 'B' | 'C',
-    'X' | 'Y' | 'Z'
+  const rounds = input.split('\n').map((draw) => draw.split(' ')) as [
+    TheirDraw,
+    OurDraw
   ][];
 
-  return rounds.reduce((acc, round) => acc + getScore(...round), 0);
+  return rounds.reduce((acc, [A, B]) => acc + getScore(A, B), 0);
 }
 
-function getOurInput(A: 'A' | 'B' | 'C', B: 'X' | 'Y' | 'Z') {
+function getOurDraw(A: TheirDraw, B: OurDraw): OurDraw {
   const map = {
     A: {
       X: 'Z',
@@ -29,7 +32,7 @@ function getOurInput(A: 'A' | 'B' | 'C', B: 'X' | 'Y' | 'Z') {
   return map[A][B];
 }
 
-function getScore(A: 'A' | 'B' | 'C', B: 'X' | 'Y' | 'Z') {
+function getScore(A: TheirDraw, B: OurDraw): number {
   const map = {
     A: {
       X: 1 + 3,
@@ -52,13 +55,10 @@ function getScore(A: 'A' | 'B' | 'C', B: 'X' | 'Y' | 'Z') {
 }
 
 export function part2(input: string) {
-  const rounds = input.split('\n').map((x) => x.split(' ')) as [
-    'A' | 'B' | 'C',
-    'X' | 'Y' | 'Z'
+  const rounds = input.split('\n').map((draw) => draw.split(' ')) as [
+    TheirDraw,
+    OurDraw
   ][];
 
-  return rounds.reduce(
-    (acc, round) => acc + getScore(round[0], getOurInput(round[0], round[1])),
-    0
-  );
+  return rounds.reduce((acc, [A, B]) => acc + getScore(A, getOurDraw(A, B)), 0);
 }
