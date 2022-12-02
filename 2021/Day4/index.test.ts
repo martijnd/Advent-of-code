@@ -1,8 +1,6 @@
 import { getInput } from '../../utils/getInput'
 import { part1, part2 } from './index'
 
-import { test, expect } from 'vitest';
-
 const data = getInput(__dirname)
 
 const exampleData = `7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1

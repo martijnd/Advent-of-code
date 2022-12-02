@@ -1,7 +1,5 @@
 import { part1, part2 } from './index'
 
-import { test, expect } from 'vitest';
-
 const data = '2,0,1,9,5,19'
 
 const exampleData = {

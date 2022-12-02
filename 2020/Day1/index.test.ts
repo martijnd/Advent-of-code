@@ -1,8 +1,5 @@
 import { getInput } from '../../utils/getInput'
 import { part1, part2 } from './index'
-
-import { test, expect } from 'vitest';
-
 const input = getInput(__dirname).split('\n').map(i => +i)
 
 // part 1

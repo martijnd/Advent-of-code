@@ -1,8 +1,6 @@
 import { getInput } from '../../utils/getInput'
 import { part1 } from './index'
 
-import { test, expect } from 'vitest';
-
 const data = getInput(__dirname)
 
 const exampleData = `nop +0

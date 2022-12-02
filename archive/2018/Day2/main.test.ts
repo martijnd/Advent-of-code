@@ -1,7 +1,5 @@
 import { partOne, partTwo } from './main';
 
-import { test, expect } from 'vitest';
-
 const testInput = [
   'abcdef',
   'bababc',

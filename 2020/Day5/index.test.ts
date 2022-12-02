@@ -1,8 +1,6 @@
 import { getInput } from '../../utils/getInput'
 import { getSum, part1, part2 } from './index'
 
-import { test, expect } from 'vitest';
-
 const input = getInput(__dirname)
 
 test('2020 - Day 5: part 1', () => {

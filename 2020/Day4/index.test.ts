@@ -1,6 +1,6 @@
 import { getInput } from '../../utils/getInput'
 import { part1, part2 } from './index'
-import { test, expect } from 'vitest';
+
 const input = getInput(__dirname)
 
 const exampleData = `ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
