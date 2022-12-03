@@ -1,5 +1,5 @@
 export function part1(input: string) {
-  const backpacks = input
+  return input
     .split('\n')
     .map(
       (backpack) =>
@@ -8,10 +8,8 @@ export function part1(input: string) {
           backpack.slice(backpack.length / 2, backpack.length),
         ] as [string, string]
     )
-    .map((A) => findCommon(A))
-    .reduce((acc, char) => acc + getCharCode(char), 0);
-
-  return backpacks;
+    .map((contents) => findCommon(...contents))
+    .reduce((total, char) => total + getCharCode(char), 0);
 }
 
 function getCharCode(char: string) {
@@ -22,13 +20,11 @@ function getCharCode(char: string) {
   return char.charCodeAt(0) - 96;
 }
 
-function findCommon([A, B]: [string, string]) {
-  return A.split('').find((char) => B.split('').includes(char))!;
-}
+function findCommon(...array: string[]) {
+  const [A, ...rest] = array;
 
-function findCommonInThree([A, B, C]: [string, string, string]) {
-  return A.split('').find(
-    (char) => B.split('').includes(char) && C.split('').includes(char)
+  return A.split('').find((char) =>
+    rest.every((arr) => arr.split('').includes(char))
   )!;
 }
 
@@ -46,6 +42,6 @@ export function part2(input: string) {
 
       return result;
     }, [])
-    .map((group) => findCommonInThree(group as [string, string, string]))
-    .reduce((acc, curr) => acc + getCharCode(curr), 0);
+    .map((group) => findCommon(...group))
+    .reduce((total, curr) => total + getCharCode(curr), 0);
 }
