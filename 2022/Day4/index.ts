@@ -1,17 +1,15 @@
 export function part1(input: string) {
-  const pairs = input
+  return input
     .split('\n')
-    .map((pair) => pair.split(','))
-    .map((parsedPair) => parsedPair.map(getSequence));
-
-  return pairs.reduce(
-    (total, [pairA, pairB]) =>
-      pairA.every((A) => pairB.includes(A)) ||
-      pairB.every((B) => pairA.includes(B))
-        ? total + 1
-        : total,
-    0
-  );
+    .map((pair) => pair.split(',').map(getSequence))
+    .reduce(
+      (total, [pairA, pairB]) =>
+        pairA.every((A) => pairB.includes(A)) ||
+        pairB.every((B) => pairA.includes(B))
+          ? total + 1
+          : total,
+      0
+    );
 }
 
 function getSequence(range: string) {
@@ -26,17 +24,15 @@ function getSequence(range: string) {
 }
 
 export function part2(input: string) {
-  const pairs = input
+  return input
     .split('\n')
-    .map((pair) => pair.split(','))
-    .map((parsedPair) => parsedPair.map(getSequence));
-
-  return pairs.reduce(
-    (total, [pairA, pairB]) =>
-      pairA.some((A) => pairB.includes(A)) ||
-      pairB.some((B) => pairA.includes(B))
-        ? total + 1
-        : total,
-    0
-  );
+    .map((pair) => pair.split(',').map(getSequence))
+    .reduce(
+      (total, [pairA, pairB]) =>
+        pairA.some((A) => pairB.includes(A)) ||
+        pairB.some((B) => pairA.includes(B))
+          ? total + 1
+          : total,
+      0
+    );
 }
