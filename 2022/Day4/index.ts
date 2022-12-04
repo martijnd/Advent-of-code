@@ -14,13 +14,8 @@ export function part1(input: string) {
 
 function getSequence(range: string) {
   const [min, max] = range.split('-').map(Number);
-  let result: number[] = [];
 
-  for (let i = min; i <= max; i++) {
-    result = [...result, i];
-  }
-
-  return result;
+  return [...Array(max - min)].map((_, i) => i + min);
 }
 
 export function part2(input: string) {
