@@ -15,10 +15,10 @@ move 1 from 1 to 2`;
 
 test('2022 - Day 5: part 1', () => {
   expect(part1(exampleData)).toBe('CMZ');
-  expect(part1(data)).toBe(undefined);
+  expect(part1(data)).toBe('TLNGFGMFN');
 });
 
-// test('2022 - Day 5: part 2', () => {
-//   expect(part2(exampleData)).toBe(undefined)
-//   // expect(part2(data)).toBe(undefined)
-// })
+test('2022 - Day 5: part 2', () => {
+  expect(part2(exampleData)).toBe('MCD');
+  expect(part2(data)).toBe('FGLQJCMBD');
+});
