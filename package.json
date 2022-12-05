@@ -2,28 +2,15 @@
   "name": "advent-of-code",
   "version": "1.0.0",
   "description": "The yearly Advent of Code puzzles.",
-  "main": "index.js",
+  "private": "true",
   "devDependencies": {
-    "@babel/core": "7.20.5",
-    "@babel/preset-env": "^7.20.2",
-    "@types/node": "^18.11.10",
-    "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.45.0",
     "@vitest/coverage-c8": "^0.25.3",
-    "eslint": "^8.28.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jest": "^27.1.6",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "live-server": "^1.2.2",
     "typescript": "^4.9.3",
     "vite": "^3.2.4",
     "vitest": "^0.25.3"
   },
   "scripts": {
     "test": "vitest",
-    "test:watch": "vitest --watch",
     "coverage": "vitest run --coverage"
   },
   "repository": {
