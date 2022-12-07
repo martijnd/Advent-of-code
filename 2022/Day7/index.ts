@@ -85,8 +85,31 @@ export function part1(input: string) {
     currentFolder.files = [...currentFolder.files, Number(row.split(' ')[0])];
   });
 
-  console.log(filesystem.folders.a.folders.e);
+  // console.log(filesystem.folders.a.folders.e);
+  const folderTotals = getFolderSizes(filesystem);
+  // console.log(folderTotals);
   return traverse(filesystem);
+}
+
+function getFolderSizes(
+  folder: Folder,
+  folders: number[] = [],
+  totals: { name: string; size: number }[] = []
+) {
+  Object.values(folder.folders).map((folder) => {
+    totals = getFolderSizes(folder, folders, totals);
+  });
+
+  totals = [
+    ...totals,
+    {
+      name: folder.name,
+      size: folder.files.reduce((acc, file) => acc + file, 0),
+    },
+  ];
+
+  console.log(totals);
+  return totals;
 }
 
 function traverse(filesystem: Folder, total = 0, max = 100_000) {
