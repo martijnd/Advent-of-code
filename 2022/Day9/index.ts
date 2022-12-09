@@ -66,7 +66,7 @@ export function part2(input: string) {
     U: { x: 0, y: -1 },
     D: { x: 0, y: 1 },
   };
-
+  let previousHeadPos = { x: 0, y: 0 };
   steps.forEach(([direction, amount]) => {
     for (let i = 0; i < amount; i++) {
       currentTailPositions.forEach((currentTailPosition, index) => {
@@ -75,9 +75,12 @@ export function part2(input: string) {
             x: currentTailPosition.x + mutations[direction].x,
             y: currentTailPosition.y + mutations[direction].y,
           };
+          console.log('0', currentTailPositions[index]);
+          previousHeadPos = { ...currentTailPositions[index] };
           return;
         }
         const previousPos = { ...currentTailPositions[index - 1] };
+        // console.log(index, { previousPos });
         // Are they touching?
         if (
           Math.abs(previousPos.x - currentTailPosition.x) <= 1 &&
@@ -86,7 +89,12 @@ export function part2(input: string) {
           return;
         }
 
-        currentTailPosition = previousPos;
+        currentTailPositions[index] = {
+          x: currentTailPosition.x + mutations[direction].x,
+          y: currentTailPosition.y + mutations[direction].y,
+        };
+
+        console.log(index, previousPos, currentTailPositions[index]);
         if (
           index === 9 &&
           !visitedPositions.find(
@@ -98,5 +106,6 @@ export function part2(input: string) {
       });
     }
   });
+  // console.log(visitedPositions);
   return visitedPositions.length;
 }
