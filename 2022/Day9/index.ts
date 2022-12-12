@@ -67,45 +67,49 @@ export function part2(input: string) {
     D: { x: 0, y: 1 },
   };
   let previousHeadPos = { x: 0, y: 0 };
+  let previousBeforeChange = { x: 0, y: 0 };
   steps.forEach(([direction, amount]) => {
     for (let i = 0; i < amount; i++) {
+      console.log('---');
       currentTailPositions.forEach((currentTailPosition, index) => {
         if (index === 0) {
-          currentTailPositions[index] = {
-            x: currentTailPosition.x + mutations[direction].x,
-            y: currentTailPosition.y + mutations[direction].y,
-          };
-          console.log('0', currentTailPositions[index]);
           previousHeadPos = { ...currentTailPositions[index] };
+          previousBeforeChange = { ...currentTailPosition };
+          currentTailPositions[0] = {
+            x: currentTailPositions[0].x + mutations[direction].x,
+            y: currentTailPositions[0].y + mutations[direction].y,
+          };
+          console.log(index, currentTailPositions[index]);
+
           return;
         }
         const previousPos = { ...currentTailPositions[index - 1] };
-        // console.log(index, { previousPos });
         // Are they touching?
         if (
           Math.abs(previousPos.x - currentTailPosition.x) <= 1 &&
           Math.abs(previousPos.y - currentTailPosition.y) <= 1
         ) {
+          console.log(index, 'is touching at', currentTailPosition);
           return;
         }
 
-        currentTailPositions[index] = {
-          x: currentTailPosition.x + mutations[direction].x,
-          y: currentTailPosition.y + mutations[direction].y,
-        };
+        currentTailPositions[index] = previousBeforeChange;
+        previousBeforeChange = { ...currentTailPosition };
 
-        console.log(index, previousPos, currentTailPositions[index]);
+        console.log(index, currentTailPositions[index]);
         if (
-          index === 9 &&
+          index === currentTailPositions.length - 1 &&
           !visitedPositions.find(
-            ({ x, y }) => previousPos.x === x && previousPos.y === y
+            ({ x, y }) =>
+              currentTailPosition.x === x && currentTailPosition.y === y
           )
         ) {
-          visitedPositions.push(previousPos);
+          visitedPositions.push(currentTailPosition);
         }
       });
     }
+    console.log('0', currentTailPositions);
   });
-  // console.log(visitedPositions);
+  console.log({ visitedPositions });
   return visitedPositions.length;
 }
