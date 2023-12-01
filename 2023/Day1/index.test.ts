@@ -10,7 +10,7 @@ treb7uchet`;
 
 test('2023 - Day 1: part 1', () => {
   expect(part1(exampleData)).toBe(142);
-  expect(part1(data)).toBe(1832);
+  expect(part1(data)).toBe(56465);
 });
 
 test('2023 - Day 1: part 2', () => {});
