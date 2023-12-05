@@ -16,6 +16,6 @@ test('2023 - Day 4: part 1', () => {
 });
 
 test('2023 - Day 4: part 2', () => {
-  expect(part2(exampleData)).toBe(undefined);
+  expect(part2(exampleData)).toBe(30);
   // expect(part2(data)).toBe(undefined)
 });
