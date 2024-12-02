@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "description": "The yearly Advent of Code puzzles.",
+  "author": "Martijn Dorsman",
+  "license": "ISC",
   "private": "true",
   "devDependencies": {
     "typescript": "^5.7.2",
-    "vite": "^6.0.2",
     "vitest": "^2.1.6"
   },
   "scripts": {
@@ -19,8 +20,6 @@
   "keywords": [
     "advent-of-code"
   ],
-  "author": "Martijn Dorsman",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/martijnd/Advent-of-code/issues"
   },
