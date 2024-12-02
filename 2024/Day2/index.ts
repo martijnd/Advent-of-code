@@ -21,18 +21,16 @@ function parse(input: string) {
 }
 
 function checkLevel(level: number[]) {
-  const allIncreasing = level.every((num, i, arr) => {
-    if (i === arr.length - 1) return true;
-    return num < arr[i + 1];
-  });
-  const allDecreasing = level.every((num, i, arr) => {
-    if (i === arr.length - 1) return true;
-    return num > arr[i + 1];
-  });
+  const allIncreasing = level.every(
+    (num, i, arr) => i === arr.length - 1 || num < arr[i + 1]
+  );
+  const allDecreasing = level.every(
+    (num, i, arr) => i === arr.length - 1 || num > arr[i + 1]
+  );
+
   const smallDiff = level.every((num, i, arr) => {
-    if (i === arr.length - 1) return true;
     const diff = Math.abs(num - arr[i + 1]);
-    return diff >= 1 && diff <= 3;
+    return i === arr.length - 1 || (diff >= 1 && diff <= 3);
   });
 
   return (allDecreasing || allIncreasing) && smallDiff;
