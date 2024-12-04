@@ -35,4 +35,37 @@ export function part1(input: string) {
   return matches;
 }
 
-export function part2(input: string) {}
+export function part2(input: string) {
+  const board = input.split('\n').map((line) => line.split(''));
+  let matches = 0;
+
+  board.forEach((line, i) => {
+    line.forEach((char, j) => {
+      if (char === 'A') {
+        if (
+          (board[i - 1]?.[j - 1] === 'M' && // M S
+            board[i + 1]?.[j - 1] === 'M' && // M S
+            board[i - 1]?.[j + 1] === 'S' &&
+            board[i + 1]?.[j + 1] === 'S') ||
+          (board[i - 1]?.[j - 1] === 'S' && // S M
+            board[i + 1]?.[j - 1] === 'S' && // S M
+            board[i - 1]?.[j + 1] === 'M' &&
+            board[i + 1]?.[j + 1] === 'M') ||
+          (board[i - 1]?.[j - 1] === 'M' && // M M
+            board[i + 1]?.[j - 1] === 'S' && // S S
+            board[i - 1]?.[j + 1] === 'M' &&
+            board[i + 1]?.[j + 1] === 'S') ||
+          (board[i - 1]?.[j - 1] === 'S' && // S S
+            board[i + 1]?.[j - 1] === 'M' && // M M
+            board[i - 1]?.[j + 1] === 'S' &&
+            board[i + 1]?.[j + 1] === 'M')
+        ) {
+          console.log(i, j);
+          matches++;
+        }
+      }
+    });
+  });
+
+  return matches;
+}

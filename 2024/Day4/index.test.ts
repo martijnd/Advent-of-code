@@ -16,10 +16,10 @@ MXMXAXMASX`;
 
 test('2024 - Day 4: part 1', () => {
   expect(part1(exampleData)).toBe(18);
-  expect(part1(data)).toBe(undefined);
+  expect(part1(data)).toBe(2567);
 });
 
-// test('2024 - Day 4: part 2', () => {
-//   expect(part2(exampleData)).toBe(undefined)
-//   // expect(part2(data)).toBe(undefined)
-// })
+test('2024 - Day 4: part 2', () => {
+  expect(part2(exampleData)).toBe(9);
+  expect(part2(data)).toBe(2029);
+});
