@@ -60,7 +60,6 @@ export function part2(input: string) {
             board[i - 1]?.[j + 1] === 'S' &&
             board[i + 1]?.[j + 1] === 'M')
         ) {
-          console.log(i, j);
           matches++;
         }
       }
