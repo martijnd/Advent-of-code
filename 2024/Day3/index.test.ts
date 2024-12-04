@@ -14,5 +14,5 @@ const exampleData2 = `xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)u
 
 test('2024 - Day 3: part 2', () => {
   expect(part2(exampleData2)).toBe(48);
-  expect(part2(data)).toBe(undefined);
+  expect(part2(data)).toBe(104245808);
 });
