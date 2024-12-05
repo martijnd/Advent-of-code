@@ -6,14 +6,21 @@ export function part1(input: string) {
 }
 
 export function part2(input: string) {
-  return parse(input).reduce(
-    (acc, level) =>
-      checkLevel(level) ||
-      level.some((_, i) => checkLevel(level.toSpliced(i, 1)))
-        ? acc + 1
-        : acc,
-    0
-  );
+  const levels = input.split('\n').map((line) => line.split(' ').map(Number));
+
+  return levels.reduce((acc, level) => {
+    if (checkLevel(level)) {
+      return acc + 1;
+    }
+    const original = [...level];
+    const result = level.some((_, i) => {
+      level = [...original];
+      level.splice(i, 1);
+      return checkLevel(level);
+    });
+
+    return result ? acc + 1 : acc;
+  }, 0);
 }
 
 function parse(input: string) {
