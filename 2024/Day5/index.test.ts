@@ -34,7 +34,7 @@ const exampleData = `47|53
 
 test('2024 - Day 5: part 1', () => {
   expect(part1(exampleData)).toBe(143);
-  expect(part1(data)).toBe(undefined);
+  expect(part1(data)).toBe(4569);
 });
 
 // test('2024 - Day 5: part 2', () => {
