@@ -15,7 +15,7 @@ test('2023 - Day 4: part 1', () => {
   expect(part1(data)).toBe(22488);
 });
 
-test.skip('2023 - Day 4: part 2', () => {
+test('2023 - Day 4: part 2', () => {
   expect(part2(exampleData)).toBe(30);
-  // expect(part2(data)).toBe(undefined)
+  expect(part2(data)).toBe(7013204);
 });

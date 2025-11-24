@@ -24,12 +24,11 @@ export function part1(input: string) {
   }, 0);
 }
 
-export function part2(input: string) {
+export function part2(input: string): number {
   const cards = input.split('\n').map((card) => {
     const [winningNumbersBruto, ownNumbers] = card.split('|');
 
     return {
-      gameIndex: Number(winningNumbersBruto.split(':')[0].split(' ')[1]) - 1,
       ownNumbers: ownNumbers
         .trim()
         .split(' ')
@@ -43,33 +42,21 @@ export function part2(input: string) {
         .map(Number),
     };
   });
-  return recurse(cards, 0).length;
-}
 
-function recurse(
-  cardsArray: {
-    gameIndex: number;
-    winningNumbers: number[];
-    ownNumbers: number[];
-  }[],
-  index: number
-) {
-  if (index === cardsArray.length - 1) {
-    return cardsArray;
-  }
-
-  const { gameIndex, ownNumbers, winningNumbers } = cardsArray[index];
-  const sum = ownNumbers.reduce(
-    (acc, number) => (winningNumbers.includes(number) ? acc + 1 : acc),
-    0
+  // Count matches for each card
+  const matches = cards.map(({ ownNumbers, winningNumbers }) =>
+    ownNumbers.filter(num => winningNumbers.includes(num)).length
   );
 
-  if (sum === 0) {
-    return recurse(cardsArray, index + 1);
+  // Use dynamic programming to count total cards
+  const cardCounts = new Array(cards.length).fill(1);
+
+  for (let i = 0; i < cards.length; i++) {
+    const matchCount = matches[i];
+    for (let j = 1; j <= matchCount && i + j < cards.length; j++) {
+      cardCounts[i + j] += cardCounts[i];
+    }
   }
 
-  const newCards = cardsArray.slice(index + 1, index + sum + 1);
-  console.log(newCards.length, index + 1, index + sum + 1);
-
-  return recurse([...cardsArray, ...newCards], index + 1);
+  return cardCounts.reduce((sum, count) => sum + count, 0);
 }

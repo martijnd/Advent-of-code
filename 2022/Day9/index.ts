@@ -49,67 +49,51 @@ export function part1(input: string) {
   return visitedPositions.length;
 }
 
-export function part2(input: string) {
+export function part2(input: string): number {
   const steps = input
     .split('\n')
     .map(
       (step) =>
         [step.split(' ')[0] as Direction, Number(step.split(' ')[1])] as const
     );
-  const visitedPositions: { x: number; y: number }[] = [{ x: 0, y: 0 }];
-  // Starting point
-  let currentTailPositions = Array.from({ length: 10 }, () => ({ x: 0, y: 0 }));
 
-  const mutations: Record<Direction, { x: number; y: number }> = {
+  // 10 knots total: positions 0-9, where 0 is head and 9 is tail
+  const knots = Array.from({ length: 10 }, () => ({ x: 0, y: 0 }));
+  const visited = new Set<string>();
+  visited.add('0,0');
+
+  const directions: Record<Direction, { x: number; y: number }> = {
     R: { x: 1, y: 0 },
     L: { x: -1, y: 0 },
     U: { x: 0, y: -1 },
     D: { x: 0, y: 1 },
   };
-  let previousHeadPos = { x: 0, y: 0 };
-  let previousBeforeChange = { x: 0, y: 0 };
-  steps.forEach(([direction, amount]) => {
-    for (let i = 0; i < amount; i++) {
-      console.log('---');
-      currentTailPositions.forEach((currentTailPosition, index) => {
-        if (index === 0) {
-          previousHeadPos = { ...currentTailPositions[index] };
-          previousBeforeChange = { ...currentTailPosition };
-          currentTailPositions[0] = {
-            x: currentTailPositions[0].x + mutations[direction].x,
-            y: currentTailPositions[0].y + mutations[direction].y,
-          };
-          console.log(index, currentTailPositions[index]);
 
-          return;
-        }
-        const previousPos = { ...currentTailPositions[index - 1] };
-        // Are they touching?
-        if (
-          Math.abs(previousPos.x - currentTailPosition.x) <= 1 &&
-          Math.abs(previousPos.y - currentTailPosition.y) <= 1
-        ) {
-          console.log(index, 'is touching at', currentTailPosition);
-          return;
-        }
+  for (const [direction, amount] of steps) {
+    for (let step = 0; step < amount; step++) {
+      // Move head
+      knots[0].x += directions[direction].x;
+      knots[0].y += directions[direction].y;
 
-        currentTailPositions[index] = previousBeforeChange;
-        previousBeforeChange = { ...currentTailPosition };
+      // Move each subsequent knot to follow the previous one
+      for (let i = 1; i < knots.length; i++) {
+        const prevKnot = knots[i - 1];
+        const currentKnot = knots[i];
 
-        console.log(index, currentTailPositions[index]);
-        if (
-          index === currentTailPositions.length - 1 &&
-          !visitedPositions.find(
-            ({ x, y }) =>
-              currentTailPosition.x === x && currentTailPosition.y === y
-          )
-        ) {
-          visitedPositions.push(currentTailPosition);
+        const dx = prevKnot.x - currentKnot.x;
+        const dy = prevKnot.y - currentKnot.y;
+
+        // If not adjacent (including diagonally), move towards the previous knot
+        if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
+          currentKnot.x += Math.sign(dx);
+          currentKnot.y += Math.sign(dy);
         }
-      });
+      }
+
+      // Track tail position (knot 9)
+      visited.add(`${knots[9].x},${knots[9].y}`);
     }
-    console.log('0', currentTailPositions);
-  });
-  console.log({ visitedPositions });
-  return visitedPositions.length;
+  }
+
+  return visited.size;
 }

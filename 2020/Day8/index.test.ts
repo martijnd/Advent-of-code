@@ -1,5 +1,5 @@
-import { getInput } from '../../utils/getInput'
-import { part1 } from './index'
+import { getInput } from '../../utils/getInput';
+import { part1, part2 } from './index';
 
 const data = getInput(__dirname)
 
@@ -18,7 +18,7 @@ test('2020 - Day 8: part 1', () => {
   expect(part1(data)).toBe(1584)
 })
 
-// test('2020 - Day 8: part 2', () => {
-//   // expect(part2(exampleData)).toBe(8)
-//   console.log(part2(data))
-// })
+test('2020 - Day 8: part 2', () => {
+  expect(part2(exampleData)).toBe(8);
+  expect(part2(data)).toBe(920);
+});
