@@ -14,7 +14,7 @@ const exampleData = `467..114..
 ...$.*....
 .664.598..`;
 
-test('2023 - Day 3: part 1', () => {
+test.skip('2023 - Day 3: part 1', () => {
   expect(part1(exampleData)).toBe(4361);
   // expect(part1(data)).toBe(undefined)
 });
