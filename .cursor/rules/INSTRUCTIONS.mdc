@@ -123,9 +123,9 @@ pnpm test -- --watch
 
 ### For Each New Day:
 
-1. **Initialize day** (recommended): `./init.sh {N}` - This automatically creates and populates all necessary files for the day:
+1. **Initialize day** (recommended): `./init.sh {N} [YEAR]` - This automatically creates and populates all necessary files for the day:
 
-   - Creates the directory structure `2025/Day{N}/`
+   - Creates the directory structure `{YEAR}/Day{N}/` (defaults to current year if not specified)
    - Generates template `index.ts` with `part1` and `part2` function stubs
    - Generates template `index.test.ts` with test structure
    - Creates `input.txt` and populates it with the actual puzzle input from Advent of Code (requires `.env` with `SESSION_ID`)
