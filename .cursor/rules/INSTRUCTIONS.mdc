@@ -166,8 +166,20 @@ pnpm test -- --watch
 - **TypeScript**: Use proper types for all variables and functions
 - **Linting**: Code should pass `read_lints()` checks
 - **Readability**: Clear variable names, comments for complex logic
+- **Documentation**: Add JSDoc comments for exported functions and complex algorithms
 - **Efficiency**: Consider time/space complexity for large inputs
 - **DRY**: Extract common logic into helper functions
+
+### Documentation Guidelines
+
+- **JSDoc Comments**: Add to all exported functions explaining purpose, parameters, and return values
+- **Algorithm Comments**: Explain complex logic, especially:
+  - Bit manipulation and masking techniques
+  - Base-N numbering systems for operator combinations
+  - State tracking in pathfinding problems
+  - Loop detection mechanisms
+- **Inline Comments**: Clarify non-obvious operations and edge cases
+- **Variable Naming**: Use descriptive names that explain purpose
 
 ### Common Patterns by Problem Type
 
