@@ -1,0 +1,194 @@
+---
+alwaysApply: true
+---
+
+# Advent of Code - Agent Instructions
+
+## Project Structure
+
+Each year has its own directory (e.g., `2024/`), and each day has its own subdirectory (e.g., `2024/Day1/`, `2024/Day2/`, etc.).
+
+## File Structure for Each Day
+
+For each puzzle day, create the following files in a new directory `2024/Day{N}/`:
+
+```
+2024/Day{N}/
+├── index.ts          # Main solution file with part1 and part2 functions
+├── index.test.ts     # Test file with example and actual input tests
+└── input.txt         # Puzzle input (empty initially, filled when available)
+```
+
+## Implementation Guidelines
+
+### index.ts Structure
+
+```typescript
+// Type definitions and constants at the top
+type Direction = '^' | '>' | 'v' | '<';
+// ... other types and constants
+
+// Helper functions (if needed)
+// function helperFunction(...) { ... }
+
+export function part1(input: string): number {
+  // Parse input
+  // Implement solution logic
+  // Return result
+  return 0;
+}
+
+export function part2(input: string): number {
+  // Parse input
+  // Implement solution logic
+  // Return result
+  return 0;
+}
+```
+
+### Key Patterns
+
+1. **Input Parsing**: Usually split by newlines and process accordingly
+
+   ```typescript
+   const lines = input.split('\n');
+   const grid = input.split('\n').map((line) => line.split(''));
+   const numbers = input.split('\n').map((line) => line.split(' ').map(Number));
+   ```
+
+2. **Common Data Structures**:
+
+   - `Set<string>` for tracking visited positions (`${row},${col}`)
+   - `Map<number/string, number[]>` for adjacency lists
+   - `Set<string>` for tracking states (`${row},${col},${direction}`)
+
+3. **Grid Operations**: Use row/col coordinates starting from 0,0 (top-left)
+
+   - Check bounds: `row >= 0 && row < grid.length && col >= 0 && col < grid[row].length`
+   - Directions: Define as `[number, number][]` for `[dRow, dCol]`
+
+4. **Loop Detection**: For pathfinding problems, track `(position, state)` to detect cycles
+
+## Testing Structure
+
+### index.test.ts Structure
+
+```typescript
+import { getInput } from '../../utils/getInput';
+import { part1, part2 } from './index';
+
+const data = getInput(__dirname); // Gets input.txt content
+
+const exampleData = `...`; // From problem description
+
+test('2024 - Day {N}: part 1', () => {
+  expect(part1(exampleData)).toBe(EXAMPLE_ANSWER);
+  expect(part1(data)).toBe(ACTUAL_ANSWER);
+});
+
+test('2024 - Day {N}: part 2', () => {
+  expect(part2(exampleData)).toBe(EXAMPLE_ANSWER);
+  // expect(part2(data)).toBe(undefined);  // Uncomment when ready
+});
+```
+
+### Test Workflow
+
+1. **Start with example**: Implement and test against example data first
+2. **Run with real input**: Once example passes, uncomment the real input test
+3. **Verify answer**: Update test expectation with the actual puzzle answer
+
+## Running Tests
+
+### Commands
+
+```bash
+# Run all tests
+pnpm test
+
+# Run specific day tests
+pnpm test:ai 2024/Day{N}/index.test.ts
+
+# Run tests in watch mode
+pnpm test -- --watch
+```
+
+### Test Results
+
+- Tests should pass before moving to the next part
+- Part 2 tests should be skipped initially with `test.skip()` until part 1 is complete
+- Example tests verify logic, actual input tests verify the final answer
+
+## Development Workflow
+
+### For Each New Day:
+
+1. **Initialize day** (recommended): `./init.sh {N}` - This automatically creates and populates all necessary files for the day:
+
+   - Creates the directory structure `2025/Day{N}/`
+   - Generates template `index.ts` with `part1` and `part2` function stubs
+   - Generates template `index.test.ts` with test structure
+   - Creates `input.txt` and populates it with the actual puzzle input from Advent of Code (requires `.env` with `SESSION_ID`)
+
+   Or manually:
+
+   - Create directory: `mkdir -p 2025/Day{N}`
+   - Create files: `touch index.ts index.test.ts input.txt`
+
+2. **Implement part 1**:
+
+   - Read the problem carefully
+   - Plan the algorithm
+   - Implement the solution
+   - Test with example data
+
+3. **Implement part 2**:
+
+   - Read part 2 requirements
+   - Modify or extend the solution
+   - Test with example data
+
+4. **Run with real input**:
+   - Input is already populated by `./init.sh`
+   - Run tests to get the answer
+   - Update tests with actual answers
+
+### Prerequisites for init.sh
+
+- Create a `.env` file in the project root with your Advent of Code session cookie:
+  ```
+  SESSION_ID=your_session_cookie_here
+  ```
+- Get your session cookie from your browser's developer tools when logged into Advent of Code
+
+### Code Quality
+
+- **TypeScript**: Use proper types for all variables and functions
+- **Linting**: Code should pass `read_lints()` checks
+- **Readability**: Clear variable names, comments for complex logic
+- **Efficiency**: Consider time/space complexity for large inputs
+- **DRY**: Extract common logic into helper functions
+
+### Common Patterns by Problem Type
+
+- **Pathfinding**: BFS/DFS with visited sets
+- **Grid traversal**: Direction vectors, bounds checking
+- **String processing**: Split, map, filter operations
+- **Math problems**: Careful with edge cases, overflow
+- **Parsing**: Robust input validation
+
+### Debugging Tips
+
+- **Console output**: Use `console.log()` for intermediate values
+- **Small inputs**: Test with minimal examples first
+- **Edge cases**: Consider empty inputs, single elements, boundaries
+- **Visualization**: For grids, print the state during development
+
+### Performance Considerations
+
+- **Large inputs**: Some puzzles have 100k+ lines, optimize accordingly
+- **Nested loops**: O(n²) might be acceptable for n≤1000, but watch for larger
+- **Memory**: Be mindful of storing large data structures
+- **Early termination**: Break loops when solution is found
+
+Remember: Focus on solving the problem correctly first, then optimize if needed. Advent of Code problems are designed to be solvable with straightforward approaches.
