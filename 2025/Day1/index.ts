@@ -18,4 +18,26 @@ export function part1(input: string) {
   )[1];
 }
 
-export function part2(input: string) {}
+export function part2(input: string) {
+  const lines = input.split('\n');
+  const MAP = {
+    L: -1,
+    R: 1,
+  } as const;
+  return lines.reduce(
+    (acc, line) => {
+      const direction = line[0] as keyof typeof MAP;
+      const amount = parseInt(line.slice(1));
+      const multiplier = amount * MAP[direction];
+      const subtotal = acc[0] + multiplier;
+      const result = subtotal % 100;
+
+      const amountTouchedZero = (multiplier + acc[0]) / 100;
+
+      console.log({ line, amount, amountTouchedZero, subtotal, result });
+
+      return [result, (result === 0 ? acc[1] + 1 : acc[1]) + amountTouchedZero];
+    },
+    [50, 0]
+  )[1];
+}

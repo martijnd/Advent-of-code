@@ -16,10 +16,10 @@ L82`;
 
 test('2025 - Day 1: part 1', () => {
   expect(part1(exampleData)).toBe(3);
-  // expect(part1(data)).toBe(undefined)
+  expect(part1(data)).toBe(962);
 });
 
-// test('2025 - Day 1: part 2', () => {
-//   expect(part2(exampleData)).toBe(undefined)
-//   // expect(part2(data)).toBe(undefined)
-// })
+test('2025 - Day 1: part 2', () => {
+  expect(part2(exampleData)).toBe(6);
+  // expect(part2(data)).toBe(undefined)
+});
