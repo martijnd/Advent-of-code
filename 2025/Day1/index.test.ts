@@ -21,5 +21,5 @@ test('2025 - Day 1: part 1', () => {
 
 test('2025 - Day 1: part 2', () => {
   expect(part2(exampleData)).toBe(6);
-  // expect(part2(data)).toBe(undefined)
+  expect(part2(data)).toBe(5782);
 });

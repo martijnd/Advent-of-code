@@ -24,20 +24,45 @@ export function part2(input: string) {
     L: -1,
     R: 1,
   } as const;
-  return lines.reduce(
-    (acc, line) => {
-      const direction = line[0] as keyof typeof MAP;
-      const amount = parseInt(line.slice(1));
-      const multiplier = amount * MAP[direction];
-      const subtotal = acc[0] + multiplier;
-      const result = subtotal % 100;
+  let amountTouchedZero = 0;
+  let location = 50;
 
-      const amountTouchedZero = (multiplier + acc[0]) / 100;
+  lines.forEach((line) => {
+    const direction = line[0] as keyof typeof MAP;
+    const amount = parseInt(line.slice(1));
 
-      console.log({ line, amount, amountTouchedZero, subtotal, result });
+    if (direction === 'L' && location === 0) {
+      location = 100;
+    }
 
-      return [result, (result === 0 ? acc[1] + 1 : acc[1]) + amountTouchedZero];
-    },
-    [50, 0]
-  )[1];
+    if (direction === 'R' && location === 100) {
+      location = 0;
+    }
+
+    for (let i = 0; i < amount; i++) {
+      location = location + MAP[direction];
+
+      if (i + 1 === amount) {
+        break;
+      }
+
+      if (location === 0) {
+        amountTouchedZero++;
+        location = 100;
+      } else if (location === 100) {
+        location = 0;
+        amountTouchedZero++;
+      }
+    }
+
+    if (location === 100) {
+      location = 0;
+    }
+
+    if (location === 0) {
+      amountTouchedZero++;
+    }
+  });
+
+  return amountTouchedZero;
 }
