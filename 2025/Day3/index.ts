@@ -21,4 +21,22 @@ export function part1(input: string) {
   return total;
 }
 
-export function part2(input: string) {}
+export function part2(input: string) {
+  return input.split('\n').reduce((acc, bank) => acc + getScore(bank), 0);
+}
+
+function getScore(bank: string) {
+  let index = 0;
+
+  let result = '';
+  const numArray = bank.split('').map(Number);
+  for (let remaining = 11; remaining >= 0; remaining--) {
+    const scopedArray = numArray.slice(index, bank.length - remaining);
+    const maxNumber = Math.max(...scopedArray);
+    const localIndex = scopedArray.indexOf(maxNumber);
+    index += localIndex + 1;
+    result += maxNumber.toString();
+  }
+
+  return parseInt(result);
+}
