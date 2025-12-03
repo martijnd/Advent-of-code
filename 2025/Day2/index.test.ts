@@ -7,7 +7,7 @@ const exampleData = `11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1
 
 test('2025 - Day 2: part 1', () => {
   expect(part1(exampleData)).toBe(1227775554);
-  expect(part1(data)).toBe(undefined);
+  expect(part1(data)).toBe(32976912643);
 });
 
 // test('2025 - Day 2: part 2', () => {
