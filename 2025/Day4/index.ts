@@ -1,40 +1,27 @@
+const positions = [
+  [-1, -1],
+  [-1, 0],
+  [-1, 1],
+  [0, -1],
+  [0, 1],
+  [1, -1],
+  [1, 0],
+  [1, 1],
+];
+
+const ROLL = '@';
+
 export function part1(input: string) {
   const map = input.split('\n').map((x) => x.split(''));
   let count = 0;
-  const positions = [
-    [-1, -1],
-    [-1, 0],
-    [-1, 1],
-    [0, -1],
-    [0, 1],
-    [1, -1],
-    [1, 0],
-    [1, 1],
-  ];
 
   for (let y = 0; y < map.length; y++) {
     for (let x = 0; x < map[0].length; x++) {
-      if (map[y][x] !== '@') {
+      if (map[y][x] !== ROLL) {
         continue;
       }
 
-      let rollCount = 0;
-      positions.forEach(([dX, dY]) => {
-        if (
-          y + dY < 0 ||
-          x + dX < 0 ||
-          y + dY > map.length - 1 ||
-          x + dX > map[0].length - 1
-        ) {
-          return;
-        }
-
-        if (map[y + dY][x + dX] === '@') {
-          rollCount++;
-        }
-      });
-
-      if (rollCount < 4) {
+      if (countAdjacentRolls(map, x, y) < 4) {
         count++;
       }
     }
@@ -49,40 +36,14 @@ export function part2(input: string) {
 
 function calculate(map: string[][], total = 0) {
   let replacedRolls: { x: number; y: number }[] = [];
-  const positions = [
-    [-1, -1],
-    [-1, 0],
-    [-1, 1],
-    [0, -1],
-    [0, 1],
-    [1, -1],
-    [1, 0],
-    [1, 1],
-  ];
 
   for (let y = 0; y < map.length; y++) {
     for (let x = 0; x < map[0].length; x++) {
-      if (map[y][x] !== '@') {
+      if (map[y][x] !== ROLL) {
         continue;
       }
 
-      let rollCount = 0;
-      positions.forEach(([dX, dY]) => {
-        if (
-          y + dY < 0 ||
-          x + dX < 0 ||
-          y + dY > map.length - 1 ||
-          x + dX > map[0].length - 1
-        ) {
-          return;
-        }
-
-        if (map[y + dY][x + dX] === '@') {
-          rollCount++;
-        }
-      });
-
-      if (rollCount < 4) {
+      if (countAdjacentRolls(map, x, y) < 4) {
         replacedRolls.push({ x, y });
       }
     }
@@ -97,4 +58,15 @@ function calculate(map: string[][], total = 0) {
   }
 
   return total;
+}
+
+function countAdjacentRolls(map: string[][], x: number, y: number) {
+  return positions.reduce((acc, [dX, dY]) => {
+    const newY = y + dY;
+    const newX = x + dX;
+    const validPosition =
+      newY >= 0 && newX >= 0 && newY < map.length && newX < map[0].length;
+
+    return validPosition && map[newY][newX] === ROLL ? acc + 1 : acc;
+  }, 0);
 }
