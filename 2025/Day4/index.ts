@@ -31,10 +31,10 @@ export function part1(input: string) {
 }
 
 export function part2(input: string) {
-  return calculate(input.split('\n').map((x) => x.split('')));
+  return countTotalAdjacentRolls(input.split('\n').map((x) => x.split('')));
 }
 
-function calculate(map: string[][], total = 0) {
+function countTotalAdjacentRolls(map: string[][], total = 0) {
   let replacedRolls: { x: number; y: number }[] = [];
 
   for (let y = 0; y < map.length; y++) {
@@ -54,7 +54,7 @@ function calculate(map: string[][], total = 0) {
   });
 
   if (replacedRolls.length > 0) {
-    total += calculate(map, replacedRolls.length);
+    total += countTotalAdjacentRolls(map, replacedRolls.length);
   }
 
   return total;
