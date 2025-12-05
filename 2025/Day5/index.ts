@@ -15,10 +15,10 @@ export function part2(input: string) {
   const ranges = rangesList
     .split('\n')
     .map((r) => r.split('-').map(Number))
-    .sort((a, b) => a[0] - b[0]) as [number, number][];
+    .sort((a, b) => a[0] - b[0]);
 
   const [initial, ...rest] = ranges;
-  const list: [number, number][] = [initial];
+  const list = [initial];
 
   // iterate through remaining ranges
   rest.forEach(([rangeStart, rangeEnd]) => {
@@ -29,6 +29,7 @@ export function part2(input: string) {
       // make sure to take the highest highest end value
       list[list.length - 1] = [storedStart, Math.max(storedEnd, rangeEnd)];
     else {
+      // if not within range, add a new separate range
       list.push([rangeStart, rangeEnd]);
     }
   });
