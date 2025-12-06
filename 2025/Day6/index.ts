@@ -1,6 +1,6 @@
 export function part1(input: string) {
   const rows = input.split('\n');
-  const operatorList = rows.at(-1)?.match(/[\*\+]{1}/g)!;
+  const operatorList = rows.at(-1)?.match(/[\*\+]/g)!;
   const data = rows.map((row) => row.match(/\d+/g)).filter(Boolean);
 
   const resultSet = [];
