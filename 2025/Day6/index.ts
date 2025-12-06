@@ -22,4 +22,47 @@ export function part1(input: string) {
   }, 0);
 }
 
-export function part2(input: string) {}
+export function part2(input: string) {
+  const rows = input.split('\n');
+
+  const columnLength = rows[0].length;
+  let result = 0;
+
+  let numbers = [];
+  for (let i = columnLength - 1; i >= 0; i--) {
+    let number = '';
+    let operator = '';
+
+    for (let j = 0; j < rows.length; j++) {
+      if (i === columnLength - 1) {
+        console.log(rows[j][i], { i, j }, rows[j].length);
+      }
+      const currentCharacter = rows[j][i];
+      if (currentCharacter === ' ') {
+        continue;
+      }
+
+      if (['*', '+'].includes(currentCharacter)) {
+        operator = currentCharacter;
+        continue;
+      }
+
+      if (currentCharacter) {
+        number += currentCharacter;
+      }
+    }
+    numbers.push(number);
+
+    if (operator) {
+      const cleanedNumbers = numbers.filter(Boolean).map(Number);
+      // console.log({ cleanedNumbers });
+      result +=
+        operator === '+'
+          ? cleanedNumbers.reduce((acc, curr) => acc + curr, 0)
+          : cleanedNumbers.reduce((acc, curr) => acc * curr, 1);
+      numbers = [];
+    }
+  }
+
+  return result;
+}

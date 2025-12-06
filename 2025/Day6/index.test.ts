@@ -13,7 +13,7 @@ test('2025 - Day 6: part 1', () => {
   expect(part1(data)).toBe(5171061464548);
 });
 
-// test('2025 - Day 6: part 2', () => {
-//   expect(part2(exampleData)).toBe(undefined)
-//   // expect(part2(data)).toBe(undefined)
-// })
+test('2025 - Day 6: part 2', () => {
+  expect(part2(exampleData)).toBe(3263827);
+  expect(part2(data)).toBe(10189959087258);
+});
