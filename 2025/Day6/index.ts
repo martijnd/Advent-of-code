@@ -52,7 +52,6 @@ export function part2(input: string) {
 
     if (operator) {
       const cleanedNumbers = numbers.filter(Boolean).map(Number);
-      // console.log({ cleanedNumbers });
       result +=
         operator === '+'
           ? cleanedNumbers.reduce((acc, curr) => acc + curr, 0)
