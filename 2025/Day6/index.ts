@@ -34,9 +34,6 @@ export function part2(input: string) {
     let operator = '';
 
     for (let j = 0; j < rows.length; j++) {
-      if (i === columnLength - 1) {
-        console.log(rows[j][i], { i, j }, rows[j].length);
-      }
       const currentCharacter = rows[j][i];
       if (currentCharacter === ' ') {
         continue;
