@@ -19,7 +19,21 @@ test('2025 - Day 11: part 1', () => {
   expect(part1(data)).toBe(477);
 });
 
-// test('2025 - Day 11: part 2', () => {
-//   expect(part2(exampleData)).toBe(undefined)
-//   // expect(part2(data)).toBe(undefined)
-// })
+const exampleData2 = `svr: aaa bbb
+aaa: fft
+fft: ccc
+bbb: tty
+tty: ccc
+ccc: ddd eee
+ddd: hub
+hub: fff
+eee: dac
+dac: fff
+fff: ggg hhh
+ggg: out
+hhh: out`;
+
+test('2025 - Day 11: part 2', () => {
+  expect(part2(exampleData2)).toBe(2);
+  // expect(part2(data)).toBe(undefined);
+});
